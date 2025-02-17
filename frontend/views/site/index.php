@@ -24,7 +24,7 @@ use common\components\MyHelpers;
             </div>
         </div>
        
-        <?php  echo $this->render("//element/table-thu"); ?>
+        <?php  echo $this->render("//element/table-thu" , ['type' => ConfigWebsite::TYPE_MIEN_NAM]); ?>
 
     </div>
     <div class="box-kqxs">

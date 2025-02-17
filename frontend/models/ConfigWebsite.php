@@ -105,6 +105,7 @@ class ConfigWebsite extends Base
     const TYPE_PROVINCE_DAC_NONG = 33;
     const TYPE_PROVINCE_KHANH_HOA = 34;
     const TYPE_PROVINCE_NINH_THUAN = 35;
+    const TYPE_PROVINCE_QUANG_BINH = 36;
 
 
     /**
@@ -150,10 +151,12 @@ class ConfigWebsite extends Base
                 return [
                     [
                         'label' => 'Phú Yên',
+                        'province_type' => self::TYPE_PROVINCE_PHU_YEN,
                         'url' => self::URL_PHU_YEN .  '/' .  $txtDate . '.js'
                     ],
                     [
                         'label' => 'Thừa Thiên Huế',
+                        'province_type' => self::TYPE_PROVINCE_THUA_THIEN_HUE,
                         'url' => self::URL_THUA_THIEN_HUE .  '/' .  $txtDate . '.js'
                     ]
                 ];
@@ -161,10 +164,12 @@ class ConfigWebsite extends Base
                 return [
                     [
                         'label' => 'DakLak',
+                        'province_type' => self::TYPE_PROVINCE_DAK_LAK,
                         'url' => self::URL_DAK_LAK .  '/' .  $txtDate . '.js'
                     ],
                     [
                         'label' => 'Quảng Nam',
+                        'province_type' => self::TYPE_PROVINCE_QUANG_NAM,
                         'url' => self::URL_QUANG_NAM .  '/' .  $txtDate . '.js'
                     ]                   
                 ];
@@ -172,10 +177,12 @@ class ConfigWebsite extends Base
                 return [
                     [
                         'label' => 'Khánh Hòa',
+                        'province_type' => self::TYPE_PROVINCE_KHANH_HOA,
                         'url' => self::URL_KHANH_HOA .  '/' .  $txtDate . '.js'
                     ],
                     [
                         'label' => 'Đà Nẵng',
+                        'province_type' => self::TYPE_PROVINCE_DA_NANG,
                         'url' => self::URL_DA_NANG .  '/' .  $txtDate . '.js'
                     ]
                 ];
@@ -183,10 +190,12 @@ class ConfigWebsite extends Base
                 return [
                     [
                         'label' => 'Bình Định',
+                        'province_type' => self::TYPE_PROVINCE_BINH_DINH,
                         'url' => self::URL_BINH_DINH .  '/' .  $txtDate . '.js'
                     ],
                     [
                         'label' => 'Quảng Bình',
+                        'province_type' => self::TYPE_PROVINCE_QUANG_BINH,
                         'url' => self::URL_QUANG_BINH .  '/' .  $txtDate . '.js'
                     ], 
                     [
@@ -198,10 +207,12 @@ class ConfigWebsite extends Base
                 return [
                     [
                         'label' => 'Gia Lai',
+                        'province_type' => self::TYPE_PROVINCE_GIA_LAI,
                         'url' => self::URL_GIA_LAI .  '/' .  $txtDate . '.js'
                     ],
                     [
                         'label' => 'Ninh Thuận',
+                        'province_type' => self::TYPE_PROVINCE_NINH_THUAN,
                         'url' => self::URL_NINH_THUAN .  '/' .  $txtDate . '.js'
                     ]
                 ];
@@ -209,14 +220,17 @@ class ConfigWebsite extends Base
                 return [
                     [
                         'label' => 'Quảng Ngãi',
+                       'province_type' => self::TYPE_PROVINCE_QUANG_NGAI, 
                         'url' => self::URL_QUANG_NGAI   .  '/' .  $txtDate . '.js'
                     ],
                     [
                         'label' => 'Đà Nẵng',
+                        'province_type' => self::TYPE_PROVINCE_DA_NANG,
                         'url' => self::URL_DA_NANG   .  '/' .  $txtDate . '.js'
                     ],
                     [
                         'label' => 'Đắc Nông',
+                        'province_type' => self::TYPE_PROVINCE_DAC_NONG,
                         'url' => self::URL_DAC_NONG .  '/' .  $txtDate . '.js'
                     ]
                 ];
@@ -224,14 +238,17 @@ class ConfigWebsite extends Base
                     return [
                         [
                             'label' => 'Khánh Hòa',
+                            'province_type' => self::TYPE_PROVINCE_KHANH_HOA,
                             'url' => self::URL_KHANH_HOA .  '/' .  $txtDate . '.js'
                         ],
                         [
                             'label' => 'Kon Tum',
+                            'province_type' => self::TYPE_PROVINCE_KON_TUM,
                             'url' => self::URL_KON_TUM .  '/' .  $txtDate . '.js'
                         ],
                         [
                             'label' => 'Thừa Thiên Huế',
+                            'province_type' => self::TYPE_PROVINCE_THUA_THIEN_HUE,
                             'url' => self::URL_THUA_THIEN_HUE .  '/' .  $txtDate . '.js'
                         ],
                     ];
@@ -389,136 +406,159 @@ class ConfigWebsite extends Base
             self::TYPE_PROVINCE_AN_GIANG => [
                 'label' => 'An Giang',
                 'alias' => 'an-giang',
+                'mien_type' => self::TYPE_MIEN_NAM,
                 'step' => 7,
                 'url' => self::URL_AN_GIANG
             ],
             self::TYPE_PROVINCE_BINH_DUONG => [
+                'mien_type' => self::TYPE_MIEN_NAM,
                 'label' => 'Bình Dương',
                 'alias' => 'binh-duong',
                 'step' => 7,
                 'url' => self::URL_BINH_DUONG,
             ],
             self::TYPE_PROVINCE_BINH_PHUOC => [
+                'mien_type' => self::TYPE_MIEN_NAM,
                 'label' => 'Bình Phước ',
                 'alias' => 'binh-phuoc',
                 'url' => self::URL_BINH_PHUOC,
                 'step' => 7
             ],
             self::TYPE_PROVINCE_BINH_THUAN => [
+                'mien_type' => self::TYPE_MIEN_NAM,
                 'label' => 'Bình Thuận',
                 'alias' => 'binh-thuan',
                 'url' => self::URL_BINH_THUAN,
                 'step' => 7
             ],
             self::TYPE_PROVINCE_BAC_LIEU => [
+                'mien_type' => self::TYPE_MIEN_NAM,
                 'label' => 'Bạc Liêu',
                 'alias' => 'bac-lieu',
                 'url' => self::URL_BAC_LIEU,
                 'step' => 7
             ],
             self::TYPE_PROVINCE_BEN_TRE => [
+                'mien_type' => self::TYPE_MIEN_NAM,
                 'label' => 'Bến Tre',
                 'alias' => 'ben-tre',
                 'url' => self::URL_BEN_TRE,
                 'step' => 7
             ],
             self::TYPE_PROVINCE_CA_MAU => [
+                'mien_type' => self::TYPE_MIEN_NAM,
                 'label' => 'Cà Mau',
                 'alias' => 'ca-mau',
                 'url' => self::URL_CA_MAU,
                 'step' => 7
             ],
             self::TYPE_PROVINCE_CAN_THO => [
+                'mien_type' => self::TYPE_MIEN_NAM,
                 'label' => 'Cần Thơ',
                 'alias' => 'can-tho',
                 'url' => self::URL_CAN_THO,
                 'step' => 7
             ],
             self::TYPE_PROVINCE_HAU_GIANG => [
+                'mien_type' => self::TYPE_MIEN_NAM,
                 'label' => 'Hậu Giang',
                 'alias' => 'hau-giang',
                 'url' => self::URL_HAU_GIANG,
                 'step' => 7
             ],
             self::TYPE_PROVINCE_HO_CHI_MINH => [
+                'mien_type' => self::TYPE_MIEN_NAM,
                 'label' => 'Hồ Chí Minh',
                 'alias' => 'ho-chi-minh',
                 'url' => self::URL_TPHCM,
                 'step' => 7
             ],
             self::TYPE_PROVINCE_KIEN_GIANG => [
+                'mien_type' => self::TYPE_MIEN_NAM,
                 'label' => 'Kiên Giang',
                 'alias' => 'kien-giang',
                 'url' => self::URL_KIEN_GIANG,
                 'step' => 7
             ],
             self::TYPE_PROVINCE_LONG_AN => [
+                'mien_type' => self::TYPE_MIEN_NAM,
                 'label' => 'Long An',
                 'alias' => 'long-an',
                 'url' => self::URL_LONG_AN,
                 'step' => 7
             ],
             self::TYPE_PROVINCE_SOC_TRANG => [
+                'mien_type' => self::TYPE_MIEN_NAM,
                 'label' => 'Sóc Trăng',
                 'alias' => 'soc-trang',
                 'url' => self::URL_SOC_TRANG,
                 'step' => 7
             ],
             self::TYPE_PROVINCE_TIEN_GIANG => [
+                'mien_type' => self::TYPE_MIEN_NAM,
                 'label' => 'Tiền Giang',
                 'alias' => 'tien-giang',
                 'url' => self::URL_TIEN_GIANG,
                 'step' => 7
             ],
             self::TYPE_PROVINCE_TRA_VINH => [
+                'mien_type' => self::TYPE_MIEN_NAM,
                 'label' => 'Trà Vinh',
                 'alias' => 'tra-vinh',
                 'url' => self::URL_TRA_VINH,
                 'step' => 7
             ],
             self::TYPE_PROVINCE_TAY_NINH => [
+                'mien_type' => self::TYPE_MIEN_NAM,
                 'label' => 'Tây Ninh',
                 'alias' => 'tay-nonhg',
                 'url' => self::URL_TAY_NINH,
                 'step' => 7
             ],
             self::TYPE_PROVINCE_VINH_LONG => [
+                'mien_type' => self::TYPE_MIEN_NAM,
                 'label' => 'Vĩnh Long',
                 'alias' => 'vinh-long',
                 'url' => self::URL_VINH_LONG,
                 'step' => 7
             ],
             self::TYPE_PROVINCE_VUNG_TAU => [
+                'mien_type' => self::TYPE_MIEN_NAM,
                 'label' => 'Vũng Tàu',
                 'alias' => 'vung-tau',
                 'url' => self::URL_VUNG_TAU,
                 'step' => 7
             ],
             self::TYPE_PROVINCE_DA_LAT => [
+                'mien_type' => self::TYPE_MIEN_NAM,
                 'label' => 'Đà Lạt',
                 'alias' => 'da-lat',
                 'url' => self::URL_DA_LAT,
                 'step' => 7
             ],
             self::TYPE_PROVINCE_DONG_NAI => [
+                'mien_type' => self::TYPE_MIEN_NAM,
                 'label' => 'Đồng Nai',
                 'alias' => 'dong-nai',
                 'url' => self::URL_DONG_NAI,
                 'step' => 7
             ],
             self::TYPE_PROVINCE_DONG_THAP => [
+                'mien_type' => self::TYPE_MIEN_NAM,
                 'label' => 'Đồng Tháp',
                 'alias' => 'dong-thap',
                 'url' => self::URL_DONG_THAP,
                 'step' => 7
             ],
             self::TYPE_PROVINCE_MIEN_BAC => [
+                'mien_type' => self::TYPE_MIEN_BAC,
                 'label' => 'Miền Bắc',
                 'alias' => 'mien-bac',
                 'url' => self::URL_MIEN_BAC,
                 'step' => 1
             ],
             self::TYPE_PROVINCE_BINH_DINH => [
+                'mien_type' => self::TYPE_MIEN_TRUNG,
                 'label' => 'Bình Định',
                 'alias' => 'binh-dinh',
                 'url' => self::URL_BINH_DINH,
@@ -526,75 +566,94 @@ class ConfigWebsite extends Base
             ],
             self::TYPE_PROVINCE_DAK_LAK => [
                 'label' => 'Đắk Lắk',
+                'mien_type' => self::TYPE_MIEN_TRUNG,
                 'alias' => 'dak-lak',
                 'url' => self::URL_DAK_LAK,
                 'step' => 1
             ],
             self::TYPE_PROVINCE_GIA_LAI => [
+                'mien_type' => self::TYPE_MIEN_TRUNG,
                 'label' => 'Gia Lai',
                 'alias' => 'gia-lai',
                 'url' => self::URL_GIA_LAI,
                 'step' => 1
             ],
             self::TYPE_PROVINCE_KHANH_HOA => [
+                'mien_type' => self::TYPE_MIEN_TRUNG,
                 'label' => 'Khánh Hoà',
                 'alias' => 'khanh-hoa',
                 'url' => self::URL_KHANH_HOA,
                 'step' => 1
             ],
             self::TYPE_PROVINCE_KON_TUM => [
+                'mien_type' => self::TYPE_MIEN_TRUNG,
                 'label' => 'Kon Tum',
                 'alias' => 'kon-tum',
                 'url' => self::URL_KON_TUM,
                 'step' => 1
             ],
             self::TYPE_PROVINCE_NINH_THUAN => [
+                'mien_type' => self::TYPE_MIEN_TRUNG,
                 'label' => 'Ninh Thuận',
                 'alias' => 'ninh-thuan',
                 'url' => self::URL_NINH_THUAN,
                 'step' => 1
             ],
             self::TYPE_PROVINCE_PHU_YEN => [
+                'mien_type' => self::TYPE_MIEN_TRUNG,
                 'label' => 'Phú Yên',
                 'alias' => 'phu-yen',
                 'url' => self::URL_PHU_YEN,
                 'step' => 1
             ],
             self::TYPE_PROVINCE_QUANG_NINH => [
+                'mien_type' => self::TYPE_MIEN_TRUNG,
                 'label' => 'Quảng Ninh',
                 'alias' => 'quang-ninh',
                 'url' => self::URL_QUANG_NINH,
                 'step' => 1
             ],
             self::TYPE_PROVINCE_QUANG_NAM => [
+                'mien_type' => self::TYPE_MIEN_TRUNG,
                 'label' => 'Quảng Nam',
                 'alias' => 'quang-nam',
                 'url' => self::URL_QUANG_NAM,
                 'step' => 1
             ],
             self::TYPE_PROVINCE_QUANG_NGAI => [
+                'mien_type' => self::TYPE_MIEN_TRUNG,
                 'label' => 'Quảng Ngải',
                 'alias' => 'quang-ngai',
                 'url' => self::URL_QUANG_NGAI,
                 'step' => 1
             ],
             self::TYPE_PROVINCE_THUA_THIEN_HUE => [
+                'mien_type' => self::TYPE_MIEN_TRUNG,
                 'label' => 'Thừa Thiên Huế',
                 'alias' => 'thua-thien-hue',
                 'url' => self::URL_THUA_THIEN_HUE,
                 'step' => 1
             ],
             self::TYPE_PROVINCE_DA_NANG => [
+                'mien_type' => self::TYPE_MIEN_TRUNG,
                 'label' => 'Đà Nẳng',
                 'alias' => 'da-nang',
                 'url' => self::URL_DA_NANG,
                 'step' => 1
             ],
             self::TYPE_PROVINCE_DAC_NONG => [
+                'mien_type' => self::TYPE_MIEN_TRUNG,
                 'label' => 'Đắk Nông',
                 'alias' => 'dac-nong',
                 'url' => self::URL_DAC_NONG,
                 'step' => 1
+            ],
+            self::TYPE_PROVINCE_QUANG_BINH => [
+                'mien_type' => self::TYPE_MIEN_TRUNG,
+                'label' => 'Quảng Bình',
+                'alias' => 'quang-binh',
+                'url' => self::URL_QUANG_BINH,
+                'step' => 7
             ],
             
         ];
@@ -608,6 +667,7 @@ class ConfigWebsite extends Base
 
     public static function analyticXoso($url)
     {
+
         $response = [
             'code' => 200,
             'data' => []
@@ -621,6 +681,7 @@ class ConfigWebsite extends Base
         }
       
         $dataRaw = MyHelpers::sendMessage($url);
+       
       
         //$dataRaw  = file_get_contents($url, false, $arrContextOptions);
         
@@ -648,7 +709,7 @@ class ConfigWebsite extends Base
         .$giai8.'.*<\/tbody>.*<\/table>.*/msi';
 
         $dataAna = preg_match_all($preg, $dataRaw, $result);
-        // debug($result);
+       // debug($dataRaw);
         // debug($dataAna);
         if (empty($result) || empty($result[1][0])) {
             $response['code'] = 400;

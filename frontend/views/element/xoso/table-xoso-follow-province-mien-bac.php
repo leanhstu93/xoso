@@ -7,11 +7,10 @@ use frontend\models\NewsCategory;
 use frontend\models\ConfigWebsite;
 use common\components\MyHelpers;
 ?>
-<div class="box-ketqua <?php echo $isRealtime ? 'js__table-load-kqsx' :  '' ?>" 
+<div class="box-ketqua" 
     data-type="<?php echo ConfigWebsite::TYPE_MIEN_BAC ?>"
     id="mn_kqngay_kq"
     >
-    <?php if (!$isRealtime) { ?>
         <table class="table table-bordered text-center">
             <tbody>
             <?php 
@@ -66,5 +65,4 @@ use common\components\MyHelpers;
             <?php } ?>
             </tbody>
         </table>
-    <?php } ?>
 </div>

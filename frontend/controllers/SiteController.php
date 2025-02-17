@@ -41,7 +41,7 @@ use yii\web\Response;
 class SiteController extends BaseController
 {
     public function actionIndex()
-    {           
+    {      
         return $this->render('index');
     }
 
@@ -149,18 +149,10 @@ class SiteController extends BaseController
             $model = Router::find()->where(['seo_name' => $alias])->one();
             $type = $model->type;
         }
-
+       
         if (!empty($type)) {
             switch ($type){
-                case Router::TYPE_PRODUCT:
-                    $res =  $this->getProductDetail($model->id_object);
-                    break;
-                case Router::TYPE_PRODUCT_CATEGORY:
-                   $res =  $this->actionGetProductCategory($model->id_object);
-                    break;
-                case Router::TYPE_PRODUCT_PAGE :
-                    $res =  $this->actionGetProductCategory(0);
-                    break;
+               
                 case Router::TYPE_NEWS_CATEGORY :
                     $res = $this->actionGetNewsCategory($model->id_object);
                     break;
@@ -171,24 +163,11 @@ class SiteController extends BaseController
                 case Router::TYPE_SINGLE_PAGE:
                     $res = $this->getSinglePage($model->id_object);
                     break;
-                case Router::TYPE_GALLERY_IMAGE_PAGE:
-                    $res = $this->getGalleryImage($model->id_object);
-                    break;
-                case Router::TYPE_GALLERY_IMAGE:
-                    $res = $this->getGalleryImageDetail($model->id_object);
-                    break;
+               
                 case Router::TYPE_NEWS_PAGE:
                     $res = $this->actionGetNewsCategory($model->id_object);
                     break;
-                case Router::TYPE_VIDEO:
-                    $res = $this->actionVideoDetail($model->id_object);
-                    break;
-                case Router::TYPE_TEMPLATE_PAGE:
-                    $res = $this->actionTemplate(0);
-                    break;
-                case Router::TYPE_TEMPLATE_CATEGORY:
-                    $res = $this->actionTemplate($model->id_object);
-                    break;
+              
                 case 'xo-so-follow-rule':
                     return $this->actionXoSoFollowRule($alias);                    
                     break;                
@@ -201,45 +180,8 @@ class SiteController extends BaseController
                 case 'xo-so-mien-trung':
                     return $this->actionXoSoMienTrung();
                     break;
-                case 'about':
-                    $res = $this->getAbout();
-                    break;
-                case 'dich-vu':
-                    $res = $this->getAllSecrvice();
-                    break;
-                case 'save-bill':
-                    $res = $this->saveBill();
-                    break;
-                case 'cart':
-                    $res['data'] = [
-                        'data' => [],
-                        'bread' => [
-                            ['name' => 'Giỏ hàng', 'link' => 'javascrip:;'],
-                            ['name' => 'Trang chủ', 'link' => '/'],
-                        ]
-                    ];
-                    $res['file'] = 'cart';
-                    break;
-                case 'checkout':
-                    $res['data'] = [
-                        'data' => [],
-                        'bread' => [
-                            ['name' => 'Thanh toán', 'link' => 'javascrip:;'],
-                            ['name' => 'Trang chủ', 'link' => '/'],
-                        ]
-                    ];
-                    $res['file'] = 'checkout';
-                    break;
-                case 'save-bill-noti':
-                    $res['data'] = [
-                        'data' => [],
-                        'bread' => [
-                            ['name' => 'Thanh toán', 'link' => 'javascrip:;'],
-                            ['name' => 'Trang chủ', 'link' => '/'],
-                        ]
-                    ];
-                    $res['file'] = 'noti-save-bill-success';
-                    break;
+            
+            
             }
 
             return $this->render($res['file'],$res['data']);
@@ -270,8 +212,7 @@ class SiteController extends BaseController
             foreach($list as $key => $value) {
                 if ($value['alias'] == $match[1]) {
                     $province =  $key;
-                    $url = ConfigWebsite::URL_AN_GIANG;
-                    // $label = 'An Giang';
+                   
                     $data = ConfigWebsite::getDataFollowProvince($province);    
                     $url = $data['url'];
                 }
@@ -281,7 +222,7 @@ class SiteController extends BaseController
         }
        
         if (empty($province)) {
-            $this->actionIndex();    
+            return $this->actionIndex();    
         } else {
             return $this->render('xo-so-follow-province', [
                 'province' => $province,
@@ -297,7 +238,7 @@ class SiteController extends BaseController
         $type = 0;
 
         if (preg_match('/xo\-so\-mien\-(nam|bac|trung).*/i', $alias, $match )) {
-            if ($match[1] == 'name') {
+            if ($match[1] == 'nam') {
                 $type = ConfigWebsite::TYPE_MIEN_NAM;
             } else if ($match[1] == 'bac') {
                 $type = ConfigWebsite::TYPE_MIEN_BAC;

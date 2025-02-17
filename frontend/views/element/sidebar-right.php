@@ -38,7 +38,7 @@ use frontend\models\News;
 	                                        </td>
                                         <td class="LMT_2N">
                                             			<a title="Xổ số Phú Yên" href="/xoso-phu-yen">Phú Yên</a><br>
-					<a title="Xổ số ThừaThiênHuế" href="/xoso-thuathienhue">ThừaThiênHuế</a><br>
+					<a title="Xổ số ThừaThiênHuế" href="/xoso-thua-thien-hue">ThừaThiênHuế</a><br>
 				<a title="xổ số miền trung thứ 2" href="/xsmt-xo-so-mien-trung-thu-2">XSMT thứ 2</a>
 	                                        </td>
                                     </tr>
@@ -132,7 +132,7 @@ use frontend\models\News;
                                         <td class="LMT_2N">
                                             			<a title="Xổ số Khánh Hòa" href="/xoso-khanh-hoa/">Khánh Hòa</a><br>
 					<a title="Xổ số Kon Tum" href="/xoso-kon-tum/">Kon Tum</a><br>
-					<a title="Xổ số ThừaThiênHuế" href="/xoso-thuathienhue/">ThừaThiênHuế</a><br>
+					<a title="Xổ số ThừaThiênHuế" href="/xoso-thua-thien-hue/">ThừaThiênHuế</a><br>
 		                                            <a title="xổ số miền bắc chủ nhật" href="/xsmt-xo-so-mien-trung-chu-nhat/">XSMT CN</a></td>
                                         
                                     </tr>

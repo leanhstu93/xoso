@@ -9,6 +9,15 @@ foreach($dataYesterday as $key => $item) {
     $dataProvince = ConfigWebsite::getDataFollowProvince($item['province_type']);
     $dataYesterday[$key]['alias'] = $dataProvince['alias'];  
 }
+
+// Danh sach tỉnh miền trung xổ số ngày hôm trước
+$dataYesterdayMienTrung = ConfigWebsite::getUrlXoSoFollowThuMienTrung(date('Y-m-d',$date));
+
+foreach($dataYesterday as $key => $item) {
+    $dataProvince = ConfigWebsite::getDataFollowProvince($item['province_type']);
+    $dataYesterdayMienTrung[$key]['alias'] = $dataProvince['alias'];  
+}
+
 ?>
 <aside class="sidebar wg160">
     <div class="widget">
@@ -34,7 +43,7 @@ foreach($dataYesterday as $key => $item) {
         </li>
                 <li class="list-item">
             <div class="sms-text">»
-                <a class="textlotoblue textnodecoration" href="/xoso-thuathienhue">ThừaThiênHuế</a>
+                <a class="textlotoblue textnodecoration" href="/xoso-thua-thien-hue">ThừaThiênHuế</a>
             </div>
         </li>
         <?php foreach($dataYesterday as $item) { ?>
@@ -238,7 +247,7 @@ foreach($dataYesterday as $key => $item) {
             </li>
 					<li class="list-item">
                 <div class="sms-text">»
-                    <a class="textlotoblue textnodecoration" href="/xoso-thuathienhue" title="">Xổ Số ThừaThiênHuế</a>
+                    <a class="textlotoblue textnodecoration" href="/xoso-thua-thien-hue" title="">Xổ Số ThừaThiênHuế</a>
                 </div>
             </li>
 					<li class="list-item">

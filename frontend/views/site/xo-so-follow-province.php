@@ -26,7 +26,7 @@ exit;
                 <div class="content"></div>
             </div>
         </div>
-        <?php  echo $this->render("//element/table-thu"); ?>
+        <?php  echo $this->render("//element/table-thu", ['type' => $data['mien_type']]); ?>
     </div>
     <div class="box-kqxs">
         <div class="tructiepmn <?php echo $province == ConfigWebsite::TYPE_PROVINCE_MIEN_BAC ? 'js__list-table-xo-so-mien-bac' : '' ?>">
@@ -42,14 +42,20 @@ exit;
                  * HCM xổ số thứ 2 và thứ 7
                  */
                 if ($province == ConfigWebsite::TYPE_PROVINCE_HO_CHI_MINH) {
+                    // Thu 2
                     if (date('N', $timeLast) == 1) {
                         $numStep = 2; // 2 ngay
-                    } elseif (date('N', $timeLast) == 6) {
+                    } elseif (date('N', $timeLast) == 6) { // Thu 7
                         $numStep = 5;
+                    }
+                } elseif ($province == ConfigWebsite::TYPE_PROVINCE_THUA_THIEN_HUE) {
+                    if (date('N', $timeLast) == 1) {
+                        $numStep = 1; // 2 ngay
+                    } elseif (date('N', $timeLast) == 7) { // chu nhat
+                        $numStep = 6;
                     }
                 } elseif ($province == ConfigWebsite::TYPE_PROVINCE_MIEN_BAC) {
                     $numStep = 1;
-                    
                 }
                 
                 $step = $numStep * 3600*24;
@@ -62,7 +68,10 @@ exit;
 
                     <div class="tieude_xs text-center">
                         <h2 class="title-post">
-                            <a href="javascript:;" title="Kết quả xổ số <?php echo $data['label'] ?>">Kết quả xổ số <?php echo $data['label'] ?></a></h2>
+                            <a href="javascript:;" 
+                            title="Kết quả xổ số <?php echo $data['label'] ?>">
+                            Kết quả xổ số <?php echo $data['label'] ?></a>
+                        </h2>
                         <h3 class="title-xsmb-item" id="ketquamnlivehead">
                             <?php 
                             if ($province == ConfigWebsite::TYPE_PROVINCE_MIEN_BAC) {
@@ -85,7 +94,7 @@ exit;
                 if ($i > 0) {
                     $urlTmp = $url . '/' . date("d-m-Y", $timeLast) . ".js ";
                 }   
-              
+        
                 $dataRaw = ConfigWebsite::analyticXoso($urlTmp);
              
                 if ($dataRaw['code'] == 200) {

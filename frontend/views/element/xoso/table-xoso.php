@@ -21,7 +21,8 @@ use common\components\MyHelpers;
                     foreach($data as $item) {
                     ?>
                         <td class="number col3">
-                            <span title="<?php echo $item['label'] ?>" class="title-ttp textlotoblue"><?php echo $item['label'] ?></span>
+                            <span title="<?php echo $item['label'] ?>" 
+                            class="title-ttp textlotoblue"><?php echo $item['label'] ?></span>
                         </td>
                 <?php } ?>
                 
