@@ -74,19 +74,12 @@ use common\components\MyHelpers;
                     }
                 }
                 // $dataXoSo = array_values($dataXoSo);
-                $isRealTime = 0;
+             
                 if (empty($dataXoSo)) {
-                   // $isRealTime = 1;
+                  
                     continue;
                 }
-
-                // if ((ConfigWebsite::checkTimeXoSoMienNam()) && $i == 0) {
-                //     $isRealTime = 1;
-                // }
-
-                
-               
-                echo $this->render("//element/xoso/table-xoso", ['data' => $dataXoSo, 'isRealtime' => $isRealTime]); 
+                echo $this->render("//element/xoso/table-xoso", ['data' => $dataXoSo]); 
             }
             ?>
 

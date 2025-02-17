@@ -76,15 +76,15 @@ use common\components\MyHelpers;
                     }
                 }
                 // $dataXoSo = array_values($dataXoSo);
-                $isRealTime = 0;
+              
                 if (empty($dataXoSo)) {
-                   // $isRealTime = 1;
+                
                     continue;
                 }
                 
                 
                
-                echo $this->render("//element/xoso/table-xoso", ['data' => $dataXoSo, 'isRealtime' => $isRealTime]); 
+                echo $this->render("//element/xoso/table-xoso", ['data' => $dataXoSo]); 
             }
           
             ?>
