@@ -48,6 +48,7 @@ class SiteController extends BaseController
     public function actionXoSoMienTrung()
     {
         return $this->render('xo-so-mien-trung', [
+            'type' => ConfigWebsite::TYPE_MIEN_TRUNG,
             'province' => ConfigWebsite::TYPE_PROVINCE_MIEN_TRUNG
         ]);
     }

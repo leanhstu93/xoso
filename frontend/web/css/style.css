@@ -1453,7 +1453,7 @@ a {
     justify-content: center;
 }
 .grid-2{
-	display: grid;
+	display: grid;@media (max-width:800px) 
     grid-template-columns: repeat(2, 1fr);
     align-items: center;
     justify-content: center;
@@ -1503,7 +1503,11 @@ img.wp-smiley, img.emoji {
 	background-color: #ed1c25;
     color: #fff;
 }
-
+.css_btn-menumobile {
+	width: 40px;
+    height: 50px;
+    padding: 15px 0px;
+}
 @media (max-width:800px) {
     .main-menu-bar {
         position: fixed !important;
@@ -1738,7 +1742,7 @@ img.wp-smiley, img.emoji {
         }
 		.content-left {
             width: 100%;
-			margin-top:45px;
+			margin-top:0px;
         }
 
         .sidebar.wg160 {
@@ -1762,6 +1766,10 @@ img.wp-smiley, img.emoji {
         .font24 {
             font-size: 5.5vw
         }
+		#cssmenu > ul > li > a {
+			padding: 10px 10px;
+			font-size: 13px;
+		}
     }
 
     @media (max-width:360px) {

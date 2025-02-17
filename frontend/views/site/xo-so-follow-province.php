@@ -99,9 +99,10 @@ exit;
              
                 if ($dataRaw['code'] == 200) {
                     if ($province != ConfigWebsite::TYPE_PROVINCE_MIEN_BAC){
-                        echo $this->render("//element/xoso/table-xoso-follow-province", ['data' => $dataRaw['data'], 'isRealtime' => 0]); 
+                        
+                        echo $this->render("//element/xoso/table-xoso-follow-province", ['data' => $dataRaw['data']]); 
                     } else {
-                        echo $this->render("//element/xoso/table-xoso-follow-province-mien-bac", ['data' => $dataRaw['data'], 'isRealtime' => 0]); 
+                        echo $this->render("//element/xoso/table-xoso-follow-province-mien-bac", ['data' => $dataRaw['data']]); 
                     }   
                 }
                 

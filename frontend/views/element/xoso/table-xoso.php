@@ -12,7 +12,6 @@ use common\components\MyHelpers;
     data-type="<?php echo ConfigWebsite::TYPE_MIEN_NAM ?>"
     id="mn_kqngay_kq"
     >
-    <?php if (!$isRealtime) { ?>
         <table class="table table-bordered text-center">
             <tbody>
             <tr class="bgedf2fa">
@@ -110,5 +109,4 @@ use common\components\MyHelpers;
                 <?php } ?>
             </tbody>
         </table>
-    <?php } ?>
 </div>

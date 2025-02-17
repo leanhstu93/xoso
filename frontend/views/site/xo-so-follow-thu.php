@@ -11,7 +11,7 @@ $titleSub = 'MN';
 
 if ($type == ConfigWebsite::TYPE_MIEN_BAC) {
     $title = 'MIỀN BẮC';
-    $titleSub = 'MN';
+    $titleSub = 'MB';
 } else if ($type == ConfigWebsite::TYPE_MIEN_TRUNG) {
     $title = 'MIỀN TRUNG';
     $titleSub = 'MT';
@@ -43,6 +43,11 @@ if ($type == ConfigWebsite::TYPE_MIEN_BAC) {
                 $timestamp = $time - $step;
                 $step = $step + (7 * 3600*24);
                 $date = date('Y-m-d', $timestamp);
+
+                // Kiểm tra ngày hiện tại đến giờ xổ số chưa
+                if ($date == date('Y-m-d') && !ConfigWebsite::checkTimeXoSo($type)) {
+                    continue;
+                }
                 
                 if ($type == ConfigWebsite::TYPE_MIEN_BAC) {
                    $txtDate = date('d-m-Y', strtotime($date));
@@ -65,7 +70,7 @@ if ($type == ConfigWebsite::TYPE_MIEN_BAC) {
                 <h2 class="title-post">
                     <a href="javascript:;" title="Kết quả xổ số <?php echo  $title ?> - KQXS <?php echo  $titleSub ?>">Kết quả xổ số <?php echo  $title ?> - KQXS <?php echo  $titleSub ?></a></h2>
                 <h3 class="title-xsmb-item" id="ketquamnlivehead">
-                    <a href="javascript:;" title="XSMN">XSMN</a> » 
+                    <a href="javascript:;" title="XS<?php echo  $titleSub ?>">XS<?php echo  $titleSub ?></a> » 
                     <a href="javascript:;">XS<?php echo  $titleSub ?> <?php echo MyHelpers::getDayOfWeekInVietnamese($timestamp) ?></a> » 
                     <a href="javascript:;">XS<?php echo  $titleSub ?> <?php echo date("d/m/Y", $timestamp) ?></a>
                 </h3>
@@ -86,7 +91,8 @@ if ($type == ConfigWebsite::TYPE_MIEN_BAC) {
                 if ($type != ConfigWebsite::TYPE_MIEN_BAC){
                     echo $this->render("//element/xoso/table-xoso", ['data' => $dataXoSo]); 
                 } else {
-                    echo $this->render("//element/xoso/table-xoso-follow-province-mien-bac", ['data' =>  $dataXoSo]); 
+                    
+                    echo $this->render("//element/xoso/table-xoso-follow-province-mien-bac", ['data' =>  $dataXoSo[0]['data']]); 
                 }  
 
               

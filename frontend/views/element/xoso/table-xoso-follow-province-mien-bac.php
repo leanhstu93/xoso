@@ -6,6 +6,7 @@ use frontend\models\News;
 use frontend\models\NewsCategory;
 use frontend\models\ConfigWebsite;
 use common\components\MyHelpers;
+
 ?>
 <div class="box-ketqua" 
     data-type="<?php echo ConfigWebsite::TYPE_MIEN_BAC ?>"

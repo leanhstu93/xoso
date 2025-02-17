@@ -3,10 +3,12 @@
 use frontend\models\ConfigWebsite;
 
 $reffixUrl = 'xo-so-mien-nam';
-
+$title = 'Miền Nam';
 if ($type == ConfigWebsite::TYPE_MIEN_BAC) {
+    $title = 'Miền Bắc';
     $reffixUrl = 'xo-so-mien-bac';
 } elseif ($type == ConfigWebsite::TYPE_MIEN_TRUNG) {
+    $title = 'Miền Trung';
     $reffixUrl = 'xo-so-mien-trung';
 }
 ?>
@@ -16,7 +18,7 @@ if ($type == ConfigWebsite::TYPE_MIEN_BAC) {
         <table class="table-bordered w100">
             <tbody>
             <tr>
-                <td class="td col4"><a href="javascript:;" class="breadcrumb-item">Miền Nam</a> </td>
+                <td class="td col4"><a href="javascript:;" class="breadcrumb-item"><?php echo $title ?></a> </td>
                 <td class="td col4"><a href="/<?php echo $reffixUrl ?>-thu-2" class="xs-thu">Thứ 2</a></td>
                 <td class="td col4"><a href="/<?php echo $reffixUrl ?>-thu-3" class="xs-thu">Thứ 3</a></td>
                 <td class="td col4"><a href="/<?php echo $reffixUrl ?>-thu-4" class="xs-thu">Thứ 4</a></td>

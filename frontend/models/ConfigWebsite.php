@@ -753,6 +753,20 @@ class ConfigWebsite extends Base
     }
 
     /**
+     * Kiểm tra đến thời gian đã xổ số chưa
+     */
+    public static function checkTimeXoSo($type)
+    {   
+        if ($type == self::TYPE_MIEN_BAC) {
+            return date('H') > 18 || (date('H') == 18 && date('i') > 35);
+        } elseif ($type == self::TYPE_MIEN_TRUNG) {
+            return date('H') > 17 || (date('H') == 17 && date('i') > 35);
+        }if ($type == self::TYPE_MIEN_NAM) {
+            return date('H') > 16 || (date('H') == 16 && date('i') > 35);
+        }
+    }
+
+    /**
      * Lấy ngày xổ số mới nhất
      */
     public static function getDateXoSoLastFromUrl($url)
