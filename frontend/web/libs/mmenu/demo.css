@@ -1,0 +1,24 @@
+
+.css_btn-menumobile {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 80px;
+    height: 50px;
+    padding: 15px 25px;
+}
+.css_btn-menumobile:before,
+.css_btn-menumobile:after {
+    content: "";
+    display: block;
+    background: #c80505;
+    height: 2px;
+}
+.css_btn-menumobile span {
+    background: #c80505;
+    display: block;
+    height: 2px;
+    margin: 7px 0;
+}
+

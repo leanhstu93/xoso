@@ -1,0 +1,721 @@
+<?php
+
+namespace frontend\models;
+
+use frontend\models\Base;
+use Yii;
+use common\components\MyHelpers;
+
+/**
+ * This is the model class for table "config_website".
+ *
+ * @property int $id
+ * @property string $setting
+ */
+class ConfigWebsite extends Base
+{
+    const TYPE_MIEN_NAM = 1;
+    const TYPE_MIEN_BAC = 2;
+    const TYPE_MIEN_TRUNG = 3;
+
+    const TYPE_XO_SO_THU  = 1;    
+
+    const URL_TPHCM = 'https://www.xoso.net/getkqxs/tp-hcm';
+    const URL_DONG_THAP = 'https://www.xoso.net/getkqxs/dong-thap';
+    const URL_CA_MAU = 'https://www.xoso.net/getkqxs/ca-mau';
+    const URL_BEN_TRE = 'https://www.xoso.net/getkqxs/ben-tre';
+    const URL_VUNG_TAU = 'https://www.xoso.net/getkqxs/vung-tau';
+    const URL_BAC_LIEU = 'https://www.xoso.net/getkqxs/bac-lieu';
+    const URL_DONG_NAI = 'https://www.xoso.net/getkqxs/dong-nai';
+    const URL_CAN_THO = 'https://www.xoso.net/getkqxs/can-tho';
+    const URL_SOC_TRANG = 'https://www.xoso.net/getkqxs/soc-trang';
+    const URL_TAY_NINH = 'https://www.xoso.net/getkqxs/tay-ninh';
+    const URL_AN_GIANG = 'https://www.xoso.net/getkqxs/an-giang';
+    const URL_BINH_THUAN = 'https://www.xoso.net/getkqxs/binh-thuan';
+
+    const URL_VINH_LONG = 'https://www.xoso.net/getkqxs/vinh-long';
+    const URL_BINH_DUONG = 'https://www.xoso.net/getkqxs/binh-duong';
+    const URL_TRA_VINH = 'https://www.xoso.net/getkqxs/tra-vinh';
+    const URL_LONG_AN = 'https://www.xoso.net/getkqxs/long-an';
+    const URL_HAU_GIANG = 'https://www.xoso.net/getkqxs/hau-giang';
+    const URL_BINH_PHUOC = 'https://www.xoso.net/getkqxs/binh-phuoc';
+
+    const URL_TIEN_GIANG = 'https://www.xoso.net/getkqxs/tien-giang';
+    const URL_KIEN_GIANG = 'https://www.xoso.net/getkqxs/kien-giang';
+    const URL_DA_LAT = 'https://www.xoso.net/getkqxs/da-lat';
+
+    const URL_MIEN_BAC = 'https://www.xoso.net/getkqxs/mien-bac';
+
+    const URL_BINH_DINH = 'https://www.xoso.net/getkqxs/binh-dinh';
+    const URL_DAK_LAK = 'https://www.xoso.net/getkqxs/dak-lak';
+    const URL_GIA_LAI = 'https://www.xoso.net/getkqxs/gia-lai';
+    const URL_KHANH_HOA = 'https://www.xoso.net/getkqxs/khanh-hoa';
+    const URL_KON_TUM = 'https://www.xoso.net/getkqxs/kon-tum';
+    const URL_NINH_THUAN = 'https://www.xoso.net/getkqxs/ninh-thuan';
+    const URL_PHU_YEN = 'https://www.xoso.net/getkqxs/phu-yen';
+    const URL_QUANG_NINH = 'https://www.xoso.net/getkqxs/quang-ninh';
+    const URL_QUANG_NAM = 'https://www.xoso.net/getkqxs/quang-nam';
+    const URL_QUANG_BINH = 'https://www.xoso.net/getkqxs/quang-binh';
+    const URL_QUANG_TRI = 'https://www.xoso.net/getkqxs/quang-tri';
+    const URL_QUANG_NGAI = 'https://www.xoso.net/getkqxs/quang-ngai';
+    const URL_THUA_THIEN_HUE = 'https://www.xoso.net/getkqxs/thua-thien-hue';
+    const URL_DA_NANG = 'https://www.xoso.net/getkqxs/da-nang'; 
+    const URL_DAC_NONG = 'https://www.xoso.net/getkqxs/dak-nong';
+
+    const NUMBER_HOURSE_XOSO_MIEN_NAM = 16;
+    const NUMBER_HOURSE_XOSO_MIEN_TRUNG = 17;
+    const NUMBER_HOURSE_XOSO_MIEN_BAC = 18;
+    const NUMBER_MINUTE_XOSO_FROM = 15;
+
+    const TYPE_PROVINCE_AN_GIANG = 1;
+    const TYPE_PROVINCE_BINH_DUONG = 2;
+    const TYPE_PROVINCE_BINH_PHUOC = 3;
+    const TYPE_PROVINCE_BINH_THUAN = 4;
+    const TYPE_PROVINCE_BAC_LIEU = 5;
+    const TYPE_PROVINCE_BEN_TRE = 6;
+    const TYPE_PROVINCE_CA_MAU = 7;
+    const TYPE_PROVINCE_CAN_THO = 8;
+    const TYPE_PROVINCE_HAU_GIANG = 9;
+    const TYPE_PROVINCE_HO_CHI_MINH = 10;
+    const TYPE_PROVINCE_KIEN_GIANG = 11;
+    const TYPE_PROVINCE_LONG_AN = 12;
+    const TYPE_PROVINCE_SOC_TRANG = 13;
+    const TYPE_PROVINCE_TIEN_GIANG = 14;
+    const TYPE_PROVINCE_TRA_VINH = 15;
+    const TYPE_PROVINCE_TAY_NINH = 16;
+    const TYPE_PROVINCE_VINH_LONG= 17;
+    const TYPE_PROVINCE_VUNG_TAU = 18;
+    const TYPE_PROVINCE_DA_LAT = 19;
+    const TYPE_PROVINCE_DONG_NAI = 20;
+    const TYPE_PROVINCE_DONG_THAP = 21;
+    const TYPE_PROVINCE_MIEN_BAC = 22;
+
+    const TYPE_PROVINCE_MIEN_TRUNG = 99;
+
+    const TYPE_PROVINCE_BINH_DINH = 23;
+    const TYPE_PROVINCE_DAK_LAK = 24;
+    const TYPE_PROVINCE_GIA_LAI = 25;
+    const TYPE_PROVINCE_KON_TUM = 26;
+    const TYPE_PROVINCE_PHU_YEN = 27;
+    const TYPE_PROVINCE_QUANG_NINH = 28;
+    const TYPE_PROVINCE_QUANG_NAM = 29;
+    const TYPE_PROVINCE_QUANG_NGAI = 30;
+    const TYPE_PROVINCE_THUA_THIEN_HUE = 31;
+    const TYPE_PROVINCE_DA_NANG = 32;
+    const TYPE_PROVINCE_DAC_NONG = 33;
+    const TYPE_PROVINCE_KHANH_HOA = 34;
+    const TYPE_PROVINCE_NINH_THUAN = 35;
+
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function tableName()
+    {
+        return 'config_website';
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function rules()
+    {
+        return [
+            [['setting'], 'string'],
+        ];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function attributeLabels()
+    {
+        return [
+            'id' => 'ID',
+            'setting' => 'Setting',
+        ];
+    }
+
+    /**
+     * Lay url xo so theo thu
+     */
+    public static function getUrlXoSoFollowThuMienTrung($date)
+    {
+        $dateBefore = $date;
+        $date = date('N', strtotime($date)); // Kết quả: 1 (thứ Hai) đến 7 (Chủ nhật)
+        $txtDate = date('d-m-Y', strtotime($dateBefore));
+     
+        switch($date) {
+            case 1: // thu 2
+                return [
+                    [
+                        'label' => 'Phú Yên',
+                        'url' => self::URL_PHU_YEN .  '/' .  $txtDate . '.js'
+                    ],
+                    [
+                        'label' => 'Thừa Thiên Huế',
+                        'url' => self::URL_THUA_THIEN_HUE .  '/' .  $txtDate . '.js'
+                    ]
+                ];
+            case 2: // thu 3
+                return [
+                    [
+                        'label' => 'DakLak',
+                        'url' => self::URL_DAK_LAK .  '/' .  $txtDate . '.js'
+                    ],
+                    [
+                        'label' => 'Quảng Nam',
+                        'url' => self::URL_QUANG_NAM .  '/' .  $txtDate . '.js'
+                    ]                   
+                ];
+            case 3: // thu 4
+                return [
+                    [
+                        'label' => 'Khánh Hòa',
+                        'url' => self::URL_KHANH_HOA .  '/' .  $txtDate . '.js'
+                    ],
+                    [
+                        'label' => 'Đà Nẵng',
+                        'url' => self::URL_DA_NANG .  '/' .  $txtDate . '.js'
+                    ]
+                ];
+            case 4: // thu 5
+                return [
+                    [
+                        'label' => 'Bình Định',
+                        'url' => self::URL_BINH_DINH .  '/' .  $txtDate . '.js'
+                    ],
+                    [
+                        'label' => 'Quảng Bình',
+                        'url' => self::URL_QUANG_BINH .  '/' .  $txtDate . '.js'
+                    ], 
+                    [
+                        'label' => 'Quảng Trị',
+                        'url' => self::URL_QUANG_TRI .  '/' .  $txtDate . '.js'
+                    ],
+                ];
+            case 5: // thu 6
+                return [
+                    [
+                        'label' => 'Gia Lai',
+                        'url' => self::URL_GIA_LAI .  '/' .  $txtDate . '.js'
+                    ],
+                    [
+                        'label' => 'Ninh Thuận',
+                        'url' => self::URL_NINH_THUAN .  '/' .  $txtDate . '.js'
+                    ]
+                ];
+            case 6: // thu 7
+                return [
+                    [
+                        'label' => 'Quảng Ngãi',
+                        'url' => self::URL_QUANG_NGAI   .  '/' .  $txtDate . '.js'
+                    ],
+                    [
+                        'label' => 'Đà Nẵng',
+                        'url' => self::URL_DA_NANG   .  '/' .  $txtDate . '.js'
+                    ],
+                    [
+                        'label' => 'Đắc Nông',
+                        'url' => self::URL_DAC_NONG .  '/' .  $txtDate . '.js'
+                    ]
+                ];
+                case 7: // thu cn
+                    return [
+                        [
+                            'label' => 'Khánh Hòa',
+                            'url' => self::URL_KHANH_HOA .  '/' .  $txtDate . '.js'
+                        ],
+                        [
+                            'label' => 'Kon Tum',
+                            'url' => self::URL_KON_TUM .  '/' .  $txtDate . '.js'
+                        ],
+                        [
+                            'label' => 'Thừa Thiên Huế',
+                            'url' => self::URL_THUA_THIEN_HUE .  '/' .  $txtDate . '.js'
+                        ],
+                    ];
+        }
+    }
+
+     /**
+     * Lay url xo so theo thu
+     */
+    public static function getUrlXoSoFollowThu($date)
+    {
+        $dateBefore = $date;
+        $date = date('N', strtotime($date)); // Kết quả: 1 (thứ Hai) đến 7 (Chủ nhật)
+        $txtDate = date('d-m-Y', strtotime($dateBefore));
+     
+        switch($date) {
+            case 1: // thu 2
+                return [
+                    [
+                        'label' => 'Cà Mau',
+                        'province_type' => self::TYPE_PROVINCE_CA_MAU,
+                        'url' => self::URL_CA_MAU .  '/' .  $txtDate . '.js'
+                    ],
+                    [
+                        'label' => 'Hồ Chí Minh',
+                        'province_type' => self::TYPE_PROVINCE_HO_CHI_MINH,
+                        'url' => self::URL_TPHCM .  '/' .  $txtDate . '.js'
+                    ],
+
+                    [
+                        'label' => 'Đồng Tháp',
+                        'province_type' => self::TYPE_PROVINCE_DONG_THAP,
+                        'url' => self::URL_DONG_THAP .  '/' .  $txtDate . '.js'
+                    ],
+                ];
+            case 2: // thu 3
+                return [
+                    [
+                        'label' => 'Bạc Liêu',
+                        'province_type' => self::TYPE_PROVINCE_BAC_LIEU,
+                        'url' => self::URL_BAC_LIEU .  '/' .  $txtDate . '.js'
+                    ],
+                    [
+                        'label' => 'Bến Tre',
+                        'province_type' => self::TYPE_PROVINCE_BEN_TRE,
+                        'url' => self::URL_BEN_TRE .  '/' .  $txtDate . '.js'
+                    ],
+                    [
+                        'label' => 'Vũng Tàu',
+                        'province_type' => self::TYPE_PROVINCE_VUNG_TAU,
+                        'url' => self::URL_VUNG_TAU .  '/' .  $txtDate . '.js'
+                    ],
+                ];
+            case 3: // thu 4
+                return [
+                    [
+                        'label' => 'Cần Thơ',
+                        'province_type' => self::TYPE_PROVINCE_CAN_THO,
+                        'url' => self::URL_CAN_THO .  '/' .  $txtDate . '.js'
+                    ],
+                    [
+                        'label' => 'Sóc Trăng',
+                        'province_type' => self::TYPE_PROVINCE_SOC_TRANG,
+                        'url' => self::URL_SOC_TRANG .  '/' .  $txtDate . '.js'
+                    ],
+                    [
+                        'label' => 'Đồng Nai',
+                        'province_type' => self::TYPE_PROVINCE_DONG_NAI,
+                        'url' => self::URL_DONG_NAI .  '/' .  $txtDate . '.js'
+                    ],
+                ];
+            case 4: // thu 5
+                return [
+                    [
+                        'label' => 'An Giang',
+                        'province_type' => self::TYPE_PROVINCE_AN_GIANG,
+                        'url' => self::URL_AN_GIANG .  '/' .  $txtDate . '.js'
+                    ],
+                    [
+                        'label' => 'Bình Thuận',
+                        'province_type' => self::TYPE_PROVINCE_BINH_THUAN,
+                        'url' => self::URL_BINH_THUAN .  '/' .  $txtDate . '.js'
+                    ], 
+                    [
+                        'label' => 'Tây Ninh',
+                        'province_type' => self::TYPE_PROVINCE_TAY_NINH,
+                        'url' => self::URL_TAY_NINH .  '/' .  $txtDate . '.js'
+                    ],
+                ];
+            case 5: // thu 6
+                return [
+                    [
+                        'label' => 'Bình Dương',
+                        'province_type' => self::TYPE_PROVINCE_BINH_DUONG,
+                        'url' => self::URL_BINH_DUONG .  '/' .  $txtDate . '.js'
+                    ],
+                    [
+                        'label' => 'Trà Vinh',
+                        'province_type' => self::TYPE_PROVINCE_TRA_VINH,
+                        'url' => self::URL_TRA_VINH .  '/' .  $txtDate . '.js'
+                    ],
+                    [
+                        'label' => 'Vĩnh Long',
+                        'province_type' => self::TYPE_PROVINCE_VINH_LONG,
+                        'url' => self::URL_VINH_LONG .  '/' .  $txtDate . '.js'
+                    ],
+                ];
+            case 6: // thu 7
+                return [
+                    [
+                        'label' => 'Bình Phước',
+                        'province_type' => self::TYPE_PROVINCE_BINH_PHUOC,
+                        'url' => self::URL_BINH_PHUOC   .  '/' .  $txtDate . '.js'
+                    ],
+                    [
+                        'label' => 'Hậu Giang',
+                        'province_type' => self::TYPE_PROVINCE_HAU_GIANG,
+                        'url' => self::URL_HAU_GIANG   .  '/' .  $txtDate . '.js'
+                    ],
+                    [
+                        'label' => 'Long An',
+                        'province_type' => self::TYPE_PROVINCE_LONG_AN,
+                        'url' => self::URL_LONG_AN .  '/' .  $txtDate . '.js'
+                    ],
+                    [
+                        'label' => 'Hồ Chí Minh',
+                        'province_type' => self::TYPE_PROVINCE_HO_CHI_MINH,
+                        'url' => self::URL_TPHCM .  '/' .  $txtDate . '.js'
+                    ],
+                ];
+                case 7: // thu cn
+                    return [
+                        [
+                            'label' => 'Kiên Giang',
+                            'province_type' => self::TYPE_PROVINCE_KIEN_GIANG,
+                            'url' => self::URL_KIEN_GIANG .  '/' .  $txtDate . '.js'
+                        ],
+                        [
+                            'label' => 'Tiền Giang',
+                            'province_type' => self::TYPE_PROVINCE_TIEN_GIANG,
+                            'url' => self::URL_TIEN_GIANG .  '/' .  $txtDate . '.js'
+                        ],
+                        [
+                            'label' => 'Đà Lạt',
+                            'province_type' => self::TYPE_PROVINCE_DA_LAT,
+                            'url' => self::URL_DA_LAT .  '/' .  $txtDate . '.js'
+                        ],
+                    ];
+        }
+    }
+
+    public static function getDataFollowProvince($type =0)
+    {
+        $list = [
+            self::TYPE_PROVINCE_AN_GIANG => [
+                'label' => 'An Giang',
+                'alias' => 'an-giang',
+                'step' => 7,
+                'url' => self::URL_AN_GIANG
+            ],
+            self::TYPE_PROVINCE_BINH_DUONG => [
+                'label' => 'Bình Dương',
+                'alias' => 'binh-duong',
+                'step' => 7,
+                'url' => self::URL_BINH_DUONG,
+            ],
+            self::TYPE_PROVINCE_BINH_PHUOC => [
+                'label' => 'Bình Phước ',
+                'alias' => 'binh-phuoc',
+                'url' => self::URL_BINH_PHUOC,
+                'step' => 7
+            ],
+            self::TYPE_PROVINCE_BINH_THUAN => [
+                'label' => 'Bình Thuận',
+                'alias' => 'binh-thuan',
+                'url' => self::URL_BINH_THUAN,
+                'step' => 7
+            ],
+            self::TYPE_PROVINCE_BAC_LIEU => [
+                'label' => 'Bạc Liêu',
+                'alias' => 'bac-lieu',
+                'url' => self::URL_BAC_LIEU,
+                'step' => 7
+            ],
+            self::TYPE_PROVINCE_BEN_TRE => [
+                'label' => 'Bến Tre',
+                'alias' => 'ben-tre',
+                'url' => self::URL_BEN_TRE,
+                'step' => 7
+            ],
+            self::TYPE_PROVINCE_CA_MAU => [
+                'label' => 'Cà Mau',
+                'alias' => 'ca-mau',
+                'url' => self::URL_CA_MAU,
+                'step' => 7
+            ],
+            self::TYPE_PROVINCE_CAN_THO => [
+                'label' => 'Cần Thơ',
+                'alias' => 'can-tho',
+                'url' => self::URL_CAN_THO,
+                'step' => 7
+            ],
+            self::TYPE_PROVINCE_HAU_GIANG => [
+                'label' => 'Hậu Giang',
+                'alias' => 'hau-giang',
+                'url' => self::URL_HAU_GIANG,
+                'step' => 7
+            ],
+            self::TYPE_PROVINCE_HO_CHI_MINH => [
+                'label' => 'Hồ Chí Minh',
+                'alias' => 'ho-chi-minh',
+                'url' => self::URL_TPHCM,
+                'step' => 7
+            ],
+            self::TYPE_PROVINCE_KIEN_GIANG => [
+                'label' => 'Kiên Giang',
+                'alias' => 'kien-giang',
+                'url' => self::URL_KIEN_GIANG,
+                'step' => 7
+            ],
+            self::TYPE_PROVINCE_LONG_AN => [
+                'label' => 'Long An',
+                'alias' => 'long-an',
+                'url' => self::URL_LONG_AN,
+                'step' => 7
+            ],
+            self::TYPE_PROVINCE_SOC_TRANG => [
+                'label' => 'Sóc Trăng',
+                'alias' => 'soc-trang',
+                'url' => self::URL_SOC_TRANG,
+                'step' => 7
+            ],
+            self::TYPE_PROVINCE_TIEN_GIANG => [
+                'label' => 'Tiền Giang',
+                'alias' => 'tien-giang',
+                'url' => self::URL_TIEN_GIANG,
+                'step' => 7
+            ],
+            self::TYPE_PROVINCE_TRA_VINH => [
+                'label' => 'Trà Vinh',
+                'alias' => 'tra-vinh',
+                'url' => self::URL_TRA_VINH,
+                'step' => 7
+            ],
+            self::TYPE_PROVINCE_TAY_NINH => [
+                'label' => 'Tây Ninh',
+                'alias' => 'tay-nonhg',
+                'url' => self::URL_TAY_NINH,
+                'step' => 7
+            ],
+            self::TYPE_PROVINCE_VINH_LONG => [
+                'label' => 'Vĩnh Long',
+                'alias' => 'vinh-long',
+                'url' => self::URL_VINH_LONG,
+                'step' => 7
+            ],
+            self::TYPE_PROVINCE_VUNG_TAU => [
+                'label' => 'Vũng Tàu',
+                'alias' => 'vung-tau',
+                'url' => self::URL_VUNG_TAU,
+                'step' => 7
+            ],
+            self::TYPE_PROVINCE_DA_LAT => [
+                'label' => 'Đà Lạt',
+                'alias' => 'da-lat',
+                'url' => self::URL_DA_LAT,
+                'step' => 7
+            ],
+            self::TYPE_PROVINCE_DONG_NAI => [
+                'label' => 'Đồng Nai',
+                'alias' => 'dong-nai',
+                'url' => self::URL_DONG_NAI,
+                'step' => 7
+            ],
+            self::TYPE_PROVINCE_DONG_THAP => [
+                'label' => 'Đồng Tháp',
+                'alias' => 'dong-thap',
+                'url' => self::URL_DONG_THAP,
+                'step' => 7
+            ],
+            self::TYPE_PROVINCE_MIEN_BAC => [
+                'label' => 'Miền Bắc',
+                'alias' => 'mien-bac',
+                'url' => self::URL_MIEN_BAC,
+                'step' => 1
+            ],
+            self::TYPE_PROVINCE_BINH_DINH => [
+                'label' => 'Bình Định',
+                'alias' => 'binh-dinh',
+                'url' => self::URL_BINH_DINH,
+                'step' => 1
+            ],
+            self::TYPE_PROVINCE_DAK_LAK => [
+                'label' => 'Đắk Lắk',
+                'alias' => 'dak-lak',
+                'url' => self::URL_DAK_LAK,
+                'step' => 1
+            ],
+            self::TYPE_PROVINCE_GIA_LAI => [
+                'label' => 'Gia Lai',
+                'alias' => 'gia-lai',
+                'url' => self::URL_GIA_LAI,
+                'step' => 1
+            ],
+            self::TYPE_PROVINCE_KHANH_HOA => [
+                'label' => 'Khánh Hoà',
+                'alias' => 'khanh-hoa',
+                'url' => self::URL_KHANH_HOA,
+                'step' => 1
+            ],
+            self::TYPE_PROVINCE_KON_TUM => [
+                'label' => 'Kon Tum',
+                'alias' => 'kon-tum',
+                'url' => self::URL_KON_TUM,
+                'step' => 1
+            ],
+            self::TYPE_PROVINCE_NINH_THUAN => [
+                'label' => 'Ninh Thuận',
+                'alias' => 'ninh-thuan',
+                'url' => self::URL_NINH_THUAN,
+                'step' => 1
+            ],
+            self::TYPE_PROVINCE_PHU_YEN => [
+                'label' => 'Phú Yên',
+                'alias' => 'phu-yen',
+                'url' => self::URL_PHU_YEN,
+                'step' => 1
+            ],
+            self::TYPE_PROVINCE_QUANG_NINH => [
+                'label' => 'Quảng Ninh',
+                'alias' => 'quang-ninh',
+                'url' => self::URL_QUANG_NINH,
+                'step' => 1
+            ],
+            self::TYPE_PROVINCE_QUANG_NAM => [
+                'label' => 'Quảng Nam',
+                'alias' => 'quang-nam',
+                'url' => self::URL_QUANG_NAM,
+                'step' => 1
+            ],
+            self::TYPE_PROVINCE_QUANG_NGAI => [
+                'label' => 'Quảng Ngải',
+                'alias' => 'quang-ngai',
+                'url' => self::URL_QUANG_NGAI,
+                'step' => 1
+            ],
+            self::TYPE_PROVINCE_THUA_THIEN_HUE => [
+                'label' => 'Thừa Thiên Huế',
+                'alias' => 'thua-thien-hue',
+                'url' => self::URL_THUA_THIEN_HUE,
+                'step' => 1
+            ],
+            self::TYPE_PROVINCE_DA_NANG => [
+                'label' => 'Đà Nẳng',
+                'alias' => 'da-nang',
+                'url' => self::URL_DA_NANG,
+                'step' => 1
+            ],
+            self::TYPE_PROVINCE_DAC_NONG => [
+                'label' => 'Đắk Nông',
+                'alias' => 'dac-nong',
+                'url' => self::URL_DAC_NONG,
+                'step' => 1
+            ],
+            
+        ];
+
+        if ($type == 0) {
+            return $list;
+        }
+
+        return $list[$type];
+    }
+
+    public static function analyticXoso($url)
+    {
+        $response = [
+            'code' => 200,
+            'data' => []
+        ];
+
+        $class =  'bkqtinhmiennam_mini';
+
+        if (strpos($url, 'mien-bac')!== false) {
+            $class =  'bkqtinhmienbac_mini';
+            
+        }
+      
+        $dataRaw = MyHelpers::sendMessage($url);
+      
+        //$dataRaw  = file_get_contents($url, false, $arrContextOptions);
+        
+        $giaidb = 'class=\"giaidb\">(.*)<\/td>.*<\/tr>';
+        $giai1 = 'class=\"giai1\">(.*)<\/td>.*<\/tr>';
+        $giai2 = 'class=\"giai2\">(.*)<\/td>.*<\/tr>';
+        $giai3 = 'class=\"giai3\">(.*)<\/td>.*<\/tr>';
+        $giai4 = 'class=\"giai4\">(.*)<\/td>.*<\/tr>';
+        $giai5 = 'class=\"giai5\">(.*)<\/td>.*<\/tr>';
+        $giai6 = 'class=\"giai6\">(.*)<\/td>.*<\/tr>';
+        $giai7 = 'class=\"giai7\">(.*)<\/td>.*<\/tr>';
+        $giai8 = 'class=\"giai8\">(.*)<\/td>.*<\/tr>';
+        if (strpos($url, 'mien-bac')!== false) {
+            $giai8 = '';
+            
+        }
+        $preg = '/.*class=\"'. $class.'\".*<tbody>.*' . $giaidb . '.*' 
+        .$giai1.'.*'
+        .$giai2.'.*'
+        .$giai3.'.*'
+        .$giai4.'.*'
+        .$giai5.'.*'
+        .$giai6.'.*'
+        .$giai7.'.*'
+        .$giai8.'.*<\/tbody>.*<\/table>.*/msi';
+
+        $dataAna = preg_match_all($preg, $dataRaw, $result);
+        // debug($result);
+        // debug($dataAna);
+        if (empty($result) || empty($result[1][0])) {
+            $response['code'] = 400;
+        } else {
+            unset($result[0]);
+
+            $result = array_values($result);
+            $result = array_column($result, 0);
+           
+            foreach($result as $key => $value) {
+                $value = trim($value);
+                $listGiai = [3, 4, 6];
+                if (strpos($url, 'mien-bac')!== false) {
+                    $listGiai = [2,3, 4,5, 6,7];
+                }
+
+                if (in_array($key,$listGiai ) && !empty($value)) { // giai 3
+                    $value = explode( '-', $value);
+                }
+
+                $response['data'][] = $value;
+            }
+        }
+       
+        return $response;
+    }
+
+    public static function checkTimeXoSoMienNam()
+    {
+        return date('H') == 16 &&  date('i') > 15 &&  date('i') < 35;
+    }
+
+    public static function checkTimeXoSoMienTrung()
+    {
+        return date('H') == 17 &&  date('i') > 15 && date('i') < 35;
+    }
+
+    public static function checkTimeXoSoMienBac()
+    {
+        return date('H') == 18 &&  date('i') > 15 &&  date('i') < 35;
+    }
+
+    /**
+     * Lấy ngày xổ số mới nhất
+     */
+    public static function getDateXoSoLastFromUrl($url)
+    {
+       // debug($url);
+        $arrContextOptions= stream_context_create(array(
+            "ssl"=>array(
+                "verify_peer"=>false,
+                "verify_peer_name"=>false,
+            ),
+        ));  
+        $dataRaw = MyHelpers::sendMessage($url);
+        //$dataRaw  = file_get_contents($url, false, $arrContextOptions);
+      
+        $preg = '/.*id=\"box_kqxs_ngay\".*<option value=\"(.*)\" selected=\"selected\".*/msi';
+
+        $dataAna = preg_match_all($preg, $dataRaw, $result);
+        
+        $date = \DateTime::createFromFormat('d-m-Y', $result[1][0]);
+        $timestamp = 0;
+        if (!empty($date)) {
+            $timestamp = $date->getTimestamp();
+        }
+        
+        return $timestamp;
+    }
+}
