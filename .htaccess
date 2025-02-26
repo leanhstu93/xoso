@@ -1,0 +1,53 @@
+# prevent directory listings
+Options -Indexes
+RewriteEngine on
+IndexIgnore */*
+
+# deal with admin first
+
+    RewriteCond %{REQUEST_URI} ^/(admin)
+
+    RewriteRule ^admin/upload/(.*)$ backend/web/upload/$1 [L]
+    RewriteRule ^admin/assets/(.*)$ backend/web/assets/$1 [L]
+
+    RewriteRule ^admin/ckeditor4/(.*)$ backend/web/ckeditor4/$1 [L]
+    RewriteRule ^admin/css/(.*)$ backend/web/css/$1 [L]
+    RewriteRule ^ckfinder/(.*)$ ckfinder/$1 [L]
+    RewriteRule ^upload/(.*)$ upload/$1 [L]
+    RewriteRule ^admin/js/(.*)$ backend/web/js/$1 [L]
+    RewriteRule ^admin/images/(.*)$ backend/web/images/$1 [L]
+    RewriteRule ^admin/app/(.*)$ backend/web/app/$1 [L]
+    RewriteRule ^admin/libs/(.*)$ backend/web/libs/$1 [L]
+
+    RewriteCond %{REQUEST_URI} !^/backend/web/(assets|css)/
+
+    RewriteCond %{REQUEST_URI} ^/(admin)
+
+    RewriteRule ^.*$ backend/web/index.php [L]
+
+
+    RewriteCond %{REQUEST_URI} ^/(assets|css)
+
+    RewriteRule ^assets/(.*)$ frontend/web/assets/$1 [L]
+
+    RewriteRule ^css/(.*)$ frontend/web/css/$1 [L]
+
+    RewriteRule ^fonts/(.*)$ frontend/web/fonts/$1 [L]
+
+    RewriteRule ^js/(.*)$ frontend/web/js/$1 [L]
+    RewriteRule ^images/(.*)$ frontend/web/images/$1 [L]
+    RewriteRule ^data/(.*)$ frontend/web/data/$1 [L]
+    RewriteRule ^libs/(.*)$ frontend/web/libs/$1 [L]
+
+
+    RewriteCond %{REQUEST_URI} !^/(frontend|backend)/web/(assets|css|js|fonts|images|libs|data)/
+
+    RewriteCond %{REQUEST_URI} !index.php
+
+	RewriteCond %{REQUEST_URI} !^/preview
+
+    RewriteCond %{REQUEST_FILENAME} !-f [OR]
+
+    RewriteCond %{REQUEST_FILENAME} !-d
+
+    RewriteRule ^.*$ frontend/web/index.php
