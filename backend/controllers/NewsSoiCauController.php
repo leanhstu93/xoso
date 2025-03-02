@@ -84,7 +84,7 @@ class NewsSoiCauController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-
+       
         if ($model->load(Yii::$app->request->post())) {
             if ( $model->save()) {
                 Yii::$app->session->setFlash('success', "Lưu thành công");

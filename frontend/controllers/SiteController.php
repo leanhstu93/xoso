@@ -127,8 +127,8 @@ class SiteController extends BaseController
 
     public function actionRewriteUrl($alias)
     {
-        if($alias == 'lien-he') {
-            $type = 'contact';
+        if($alias == 'soi-cau') {
+            $type = 'soi-cau';
         } else if($alias == 'gioi-thieu') {
             $type = 'about';
         } else if($alias == 'dich-vu') {
@@ -185,7 +185,7 @@ class SiteController extends BaseController
                 case 'xo-so-mien-trung':
                     return $this->actionXoSoMienTrung();
                 case 'soi-cau':
-                    return $this->actionSoiCau();
+                    return $this->actionListSoiCau();
                     break;
             
             
@@ -1124,7 +1124,9 @@ class SiteController extends BaseController
                     $myModel->province_type = $item['province_type'];
                     $myModel->date_created = date('Y-m-d', $dateTimeStamp);
                     $myModel->url_image = '';
+                    
                     $myModel->content = $templateNews->getContent($dateTimeStamp, $item['label'], $item['province_type']);
+                    debug($myModel->content);
                     
                     $myModel->status = 1;
                     if ($myModel->save()) {
@@ -1166,5 +1168,59 @@ class SiteController extends BaseController
         }
 
        return $content;
+    }
+
+    public function actionListSoiCau()
+    {  
+        $this->layout = 'main';
+
+        $sort = $this->getSort();
+        #query
+        $dataQuery = [];
+        $dataGet = Yii::$app->request->get();
+        if (!empty($dataGet['keyword'])) {
+            $dataQuery = [
+                'like', 'name', $dataGet['keyword']
+            ];
+        }
+        
+        $data = NewsSoiCau::find()->where($dataQuery)->andWhere(['status' => 1]);
+        $countQuery = clone $data;
+        $categories = [];
+        // set breadcrumb
+        $bread[] = [
+            'name' => 'Trang chủ',
+            'link' => Yii::$app->homeUrl
+        ];
+
+        # set meta
+        $configPage = new ConfigPage();
+        $modelConfigPage = ConfigPage::getPageConfig(ConfigPage::TYPE_NEWS);
+        $modelConfigPage->setTranslate();
+        $this->view->registerMetaTag([
+            'name' => 'keywords',
+            'content' => $modelConfigPage->meta_keyword
+        ]);
+        $this->view->registerMetaTag([
+            'name' => 'description',
+            'content' => $modelConfigPage->meta_desc
+        ]);
+        $this->view->title = $modelConfigPage->name;
+      
+        # phan trang
+        $pages = new Pagination(['totalCount' => $countQuery->count()]);
+        $pages->defaultPageSize = 20;
+
+        $models = $data->offset($pages->offset)
+            ->limit($pages->limit)
+            ->orderBy('id DESC')
+            ->all();
+        # end phan trang
+
+        return $this->render('list-soi-cau', [
+           'data' => $models,
+                'bread' => $bread,
+                'pages' =>$pages
+        ]);
     }
 }

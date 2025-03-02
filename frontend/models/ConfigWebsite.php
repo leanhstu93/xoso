@@ -21,115 +21,115 @@ class ConfigWebsite extends Base
     const TYPE_XO_SO_THU  = 1;    
 
     const URL_TPHCM = 'https://www.xoso.net/getkqxs/tp-hcm';
-    const URL_SO_GAN_TPHCM = 'https://atrungroi.com/thong-ke-lo-gan-xshcm.html';
+    const URL_SO_GAN_TPHCM = 'https://atrungroi.com/thong-ke-xshcm.html';
 
     const URL_DONG_THAP = 'https://www.xoso.net/getkqxs/dong-thap';
-    const URL_SO_GAN_DONG_THAP = 'https://atrungroi.com/thong-ke-lo-gan-xsdt.html';
+    const URL_SO_GAN_DONG_THAP = 'https://atrungroi.com/thong-ke-xsdt.html';
 
     const URL_CA_MAU = 'https://www.xoso.net/getkqxs/ca-mau';
-    const URL_SO_GAN_CA_MAU = 'https://atrungroi.com/thong-ke-lo-gan-xscm.html';
+    const URL_SO_GAN_CA_MAU = 'https://atrungroi.com/thong-ke-xscm.html';
 
     const URL_BEN_TRE = 'https://www.xoso.net/getkqxs/ben-tre';
-    const URL_SO_GAN_BEN_TRE = 'https://atrungroi.com/thong-ke-lo-gan-xsbt.html';
+    const URL_SO_GAN_BEN_TRE = 'https://atrungroi.com/thong-ke-xsbt.html';
 
     const URL_VUNG_TAU = 'https://www.xoso.net/getkqxs/vung-tau';
-    const URL_SO_GAN_VUNG_TAU = 'https://atrungroi.com/thong-ke-lo-gan-xsvt.html';
+    const URL_SO_GAN_VUNG_TAU = 'https://atrungroi.com/thong-ke-xsvt.html';
 
     const URL_BAC_LIEU = 'https://www.xoso.net/getkqxs/bac-lieu';
-    const URL_SO_GAN_BAC_LIEU = 'https://atrungroi.com/thong-ke-lo-gan-xsbl.html';
+    const URL_SO_GAN_BAC_LIEU = 'https://atrungroi.com/thong-ke-xsbl.html';
 
     const URL_DONG_NAI = 'https://www.xoso.net/getkqxs/dong-nai';
-    const URL_SO_GAN_DONG_NAI = 'https://atrungroi.com/thong-ke-lo-gan-xsdn.html';
+    const URL_SO_GAN_DONG_NAI = 'https://atrungroi.com/thong-ke-xsdn.html';
 
     const URL_CAN_THO = 'https://www.xoso.net/getkqxs/can-tho';
-    const URL_SO_GAN_CAN_THO = 'https://atrungroi.com/thong-ke-lo-gan-xsct.html';
+    const URL_SO_GAN_CAN_THO = 'https://atrungroi.com/thong-ke-xsct.html';
 
     const URL_SOC_TRANG = 'https://www.xoso.net/getkqxs/soc-trang';
-    const URL_SO_GAN_SOC_TRANG = 'https://atrungroi.com/thong-ke-lo-gan-xsst.html';
+    const URL_SO_GAN_SOC_TRANG = 'https://atrungroi.com/thong-ke-xsst.html';
 
     const URL_TAY_NINH = 'https://www.xoso.net/getkqxs/tay-ninh';
-    const URL_SO_GAN_TAY_NINH = 'https://atrungroi.com/thong-ke-lo-gan-xstn.html';
+    const URL_SO_GAN_TAY_NINH = 'https://atrungroi.com/thong-ke-xstn.html';
 
     const URL_AN_GIANG = 'https://www.xoso.net/getkqxs/an-giang';
-    const URL_SO_GAN_AN_GIANG = 'https://atrungroi.com/thong-ke-lo-gan-xsag.html';
+    const URL_SO_GAN_AN_GIANG = 'https://atrungroi.com/thong-ke-xsag.html';
 
     const URL_BINH_THUAN = 'https://www.xoso.net/getkqxs/binh-thuan';
-    const URL_SO_GAN_BINH_THUAN = 'https://atrungroi.com/thong-ke-lo-gan-xsbth.html';
+    const URL_SO_GAN_BINH_THUAN = 'https://atrungroi.com/thong-ke-xsbth.html';
 
     const URL_VINH_LONG = 'https://www.xoso.net/getkqxs/vinh-long';
-    const URL_SO_GAN_VINH_LONG = 'https://atrungroi.com/thong-ke-lo-gan-xsvl.html';
+    const URL_SO_GAN_VINH_LONG = 'https://atrungroi.com/thong-ke-xsvl.html';
 
     const URL_BINH_DUONG = 'https://www.xoso.net/getkqxs/binh-duong';
-    const URL_SO_GAN_BINH_DUONG = 'https://atrungroi.com/thong-ke-lo-gan-xsbd.html';
+    const URL_SO_GAN_BINH_DUONG = 'https://atrungroi.com/thong-ke-xsbd.html';
 
     const URL_TRA_VINH = 'https://www.xoso.net/getkqxs/tra-vinh';
-    const URL_SO_GAN_TRA_VINH = 'https://atrungroi.com/thong-ke-lo-gan-xstv.html';
+    const URL_SO_GAN_TRA_VINH = 'https://atrungroi.com/thong-ke-xstv.html';
 
     const URL_LONG_AN = 'https://www.xoso.net/getkqxs/long-an';
-    const URL_SO_GAN_LONG_AN = 'https://atrungroi.com/thong-ke-lo-gan-xsla.html';
+    const URL_SO_GAN_LONG_AN = 'https://atrungroi.com/thong-ke-xsla.html';
 
     const URL_HAU_GIANG = 'https://www.xoso.net/getkqxs/hau-giang';
-    const URL_SO_GAN_HAU_GIANG = 'https://atrungroi.com/thong-ke-lo-gan-xshg.html';
+    const URL_SO_GAN_HAU_GIANG = 'https://atrungroi.com/thong-ke-xshg.html';
 
     const URL_BINH_PHUOC = 'https://www.xoso.net/getkqxs/binh-phuoc';
-    const URL_SO_GAN_BINH_PHUOC = 'https://atrungroi.com/thong-ke-lo-gan-xsbp.html';
+    const URL_SO_GAN_BINH_PHUOC = 'https://atrungroi.com/thong-ke-xsbp.html';
 
     const URL_TIEN_GIANG = 'https://www.xoso.net/getkqxs/tien-giang';
-    const URL_SO_GAN_TIEN_GIANG = 'https://atrungroi.com/thong-ke-lo-gan-xstg.html';
+    const URL_SO_GAN_TIEN_GIANG = 'https://atrungroi.com/thong-ke-xstg.html';
 
     const URL_KIEN_GIANG = 'https://www.xoso.net/getkqxs/kien-giang';
-    const URL_SO_GAN_KIEN_GIANG = 'https://atrungroi.com/thong-ke-lo-gan-xskg.html';
+    const URL_SO_GAN_KIEN_GIANG = 'https://atrungroi.com/thong-ke-xskg.html';
 
     const URL_DA_LAT = 'https://www.xoso.net/getkqxs/da-lat';
-    const URL_SO_GAN_DA_LAT = 'https://atrungroi.com/thong-ke-lo-gan-xsdl.html';
+    const URL_SO_GAN_DA_LAT = 'https://atrungroi.com/thong-ke-xsdl.html';
 
     const URL_MIEN_BAC = 'https://www.xoso.net/getkqxs/mien-bac';
-    const URL_SO_GAN_MIEN_BAC = 'https://atrungroi.com/thong-ke-lo-gan-xsmb.html';
+    const URL_SO_GAN_MIEN_BAC = 'https://atrungroi.com/thong-ke-xsmb.html';
 
     const URL_BINH_DINH = 'https://www.xoso.net/getkqxs/binh-dinh';
-    const URL_SO_GAN_BINH_DINH = 'https://atrungroi.com/thong-ke-lo-gan-xsbdinh.html';
+    const URL_SO_GAN_BINH_DINH = 'https://atrungroi.com/thong-ke-xsbdinh.html';
 
     const URL_DAK_LAK = 'https://www.xoso.net/getkqxs/dak-lak';
-    const URL_SO_GAN_DAK_LAK = 'https://atrungroi.com/thong-ke-lo-gan-xsdlk.html';
+    const URL_SO_GAN_DAK_LAK = 'https://atrungroi.com/thong-ke-xsdlk.html';
 
     const URL_GIA_LAI = 'https://www.xoso.net/getkqxs/gia-lai';
-    const URL_SO_GAN_GIA_LAI = 'https://atrungroi.com/thong-ke-lo-gan-xsgl.html';
+    const URL_SO_GAN_GIA_LAI = 'https://atrungroi.com/thong-ke-xsgl.html';
 
     const URL_KHANH_HOA = 'https://www.xoso.net/getkqxs/khanh-hoa';
-    const URL_SO_GAN_KHANH_HOA = 'https://atrungroi.com/thong-ke-lo-gan-xskh.html';
+    const URL_SO_GAN_KHANH_HOA = 'https://atrungroi.com/thong-ke-xskh.html';
 
     const URL_KON_TUM = 'https://www.xoso.net/getkqxs/kon-tum';
-    const URL_SO_GAN_KON_TUM = 'https://atrungroi.com/thong-ke-lo-gan-xs-kontum.html';
+    const URL_SO_GAN_KON_TUM = 'https://atrungroi.com/thong-ke-xs-kontum.html';
 
     const URL_NINH_THUAN = 'https://www.xoso.net/getkqxs/ninh-thuan';
-    const URL_SO_GAN_NINH_THUAN = 'https://atrungroi.com/thong-ke-lo-gan-xsnt.html';
+    const URL_SO_GAN_NINH_THUAN = 'https://atrungroi.com/thong-ke-xsnt.html';
 
     const URL_PHU_YEN = 'https://www.xoso.net/getkqxs/phu-yen';
-    const URL_SO_GAN_PHU_YEN = 'https://atrungroi.com/thong-ke-lo-gan-xspy.html';
+    const URL_SO_GAN_PHU_YEN = 'https://atrungroi.com/thong-ke-xspy.html';
 
     // todo check lai co dai quang ninh khong
     const URL_QUANG_NINH = 'https://www.xoso.net/getkqxs/quang-ninh';
     
     const URL_QUANG_NAM = 'https://www.xoso.net/getkqxs/quang-nam';
-    const URL_SO_GAN_QUANG_NAM = 'https://atrungroi.com/thong-ke-lo-gan-xsqn.html';
+    const URL_SO_GAN_QUANG_NAM = 'https://atrungroi.com/thong-ke-xsqn.html';
 
     const URL_QUANG_BINH = 'https://www.xoso.net/getkqxs/quang-binh';
-    const URL_SO_GAN_QUANG_BINH = 'https://atrungroi.com/thong-ke-lo-gan-xsqb.html';
+    const URL_SO_GAN_QUANG_BINH = 'https://atrungroi.com/thong-ke-xsqb.html';
 
     const URL_QUANG_TRI = 'https://www.xoso.net/getkqxs/quang-tri';
-    const URL_SO_GAN_QUANG_TRI = 'https://atrungroi.com/thong-ke-lo-gan-xsqt.html';
+    const URL_SO_GAN_QUANG_TRI = 'https://atrungroi.com/thong-ke-xsqt.html';
 
     const URL_QUANG_NGAI = 'https://www.xoso.net/getkqxs/quang-ngai';
-    const URL_SO_GAN_QUANG_NGAI = 'https://atrungroi.com/thong-ke-lo-gan-xsqng.html';
+    const URL_SO_GAN_QUANG_NGAI = 'https://atrungroi.com/thong-ke-xsqng.html';
 
     const URL_THUA_THIEN_HUE = 'https://www.xoso.net/getkqxs/thua-thien-hue';
-    const URL_SO_GAN_THUA_THIEN_HUE = 'https://atrungroi.com/thong-ke-lo-gan-xstth.html';
+    const URL_SO_GAN_THUA_THIEN_HUE = 'https://atrungroi.com/thong-ke-xstth.html';
 
     const URL_DA_NANG = 'https://www.xoso.net/getkqxs/da-nang'; 
-    const URL_SO_GAN_DA_NANG = 'https://atrungroi.com/thong-ke-lo-gan-xsdng.html';
+    const URL_SO_GAN_DA_NANG = 'https://atrungroi.com/thong-ke-xsdng.html';
 
     const URL_DAC_NONG = 'https://www.xoso.net/getkqxs/dak-nong';
-    const URL_SO_GAN_DAC_NONG = 'https://atrungroi.com/thong-ke-lo-gan-xsdno.html';
+    const URL_SO_GAN_DAC_NONG = 'https://atrungroi.com/thong-ke-xsdno.html';
 
     const NUMBER_HOURSE_XOSO_MIEN_NAM = 16;
     const NUMBER_HOURSE_XOSO_MIEN_TRUNG = 17;
@@ -720,7 +720,7 @@ class ConfigWebsite extends Base
                 'label' => 'Quảng Ninh',
                 'alias' => 'quang-ninh',
                 'url' => self::URL_QUANG_NINH,
-                'url_so_gan' => self::URL_SO_GAN_QUANG_NINH,
+                'url_so_gan' => '',
                 'step' => 1
             ],
             self::TYPE_PROVINCE_QUANG_NAM => [
@@ -965,20 +965,54 @@ class ConfigWebsite extends Base
     }
 
     /**
-     * $param url https://atrungroi.com/thong-ke-lo-gan-xsag.html
+     * $param url https://atrungroi.com/thong-ke-xsag.html
      */
     public static function getContentLoGan($url)
     {
         $content = '';
         $dataRaw = MyHelpers::sendMessage($url);
 
-        $preg = "/.*main.*Bảng thống kê 10 con lô gan.*<table(.*)<\/table>.*Bảng thống kê 10 cặp lô khan .*main.*/msi";
+        $preg = "/.*main.*Lô gan.*<table(.*)<\/table>.*10 con lô xuất hiện nhiề.*main.*/msi";
         $dataAna = preg_match_all($preg, $dataRaw, $result);
 
         if (!empty($result[1][0])) {
             $content = "<table". $result[1][0]."</table>";    
         }
 
+       return $content;
+    }
+
+    
+    /**
+     * $param url https://atrungroi.com/thong-ke-xsag.html
+     */
+    public static function getContent10SoXuatHienNhieuNhat($url)
+    {
+        $content = '';
+        $dataRaw = MyHelpers::sendMessage($url);
+
+        $preg = "/.*main.*10 con lô xuất hiện nhiều nhất tro.*<table(.*)<\/table>.*class=\"box\".*main.*/msi";
+        $dataAna = preg_match_all($preg, $dataRaw, $result);
+        
+        if (!empty($result[1][0])) {
+            $content = "<table". $result[1][0]."</table>";    
+        }
+     
+       return $content;
+    }
+
+    public static function getContentThongKeGiaiDacBiet($url)
+    {
+        $content = '';
+        $dataRaw = MyHelpers::sendMessage($url);
+
+        $preg = "/.*main.*Thống kê giải đặc biệt.*<table(.*)<\/table>.*30 kỳ quay.*main.*/msi";
+        $dataAna = preg_match_all($preg, $dataRaw, $result);
+       
+        if (!empty($result[1][0])) {
+            $content = "<table". $result[1][0]."</table>";    
+        }
+       
        return $content;
     }
 }

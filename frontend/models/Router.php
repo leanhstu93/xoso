@@ -35,6 +35,7 @@ class Router extends Base
     const TYPE_SERVICE= 35;
     const TYPE_SERVICE_PAGE = 37;
     const TYPE_TEMPLATE_PAGE = 39;
+    const TYPE_NEWS_SOI_CAU = 40;
     /**
      * {@inheritdoc}
      */

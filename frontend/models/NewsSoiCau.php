@@ -35,7 +35,7 @@ class NewsSoiCau extends Base
             [['title'], 'required'],
             [['content', 'url_image'], 'string'],
             [['status', 'id', 'province_type'], 'integer'],
-            [['title'], 'string', 'max' => 255],
+            [['title', 'seo_name'], 'string', 'max' => 255],
             [['date_created'], 'date', 'format' => 'php:Y-m-d'],
             [['province_type'], 'safe'],
         ];
@@ -48,6 +48,7 @@ class NewsSoiCau extends Base
     {
         return [
             'id' => 'ID',
+            'seo_name'  => 'Đường dẫn',
             'province_type' => 'Tỉnh / thành',
             'title' => 'Tiêu đề',
             'url_image' => 'Hình ảnh',
@@ -66,9 +67,15 @@ class NewsSoiCau extends Base
 //        );
 //    }
 
-    public function getBannerCategory()
+    public function getSeoName()
     {
-        return $this->hasOne(BannerCategory::className(), ['id' => 'category_id']);
+        $model = Router::find()->where(['id_object' => $this->id,'type' => Router::TYPE_NEWS_SOI_CAU])->one();
+        return $model->seo_name;
+    }
+
+    public function getUrl()
+    {
+        return Yii::$app->homeUrl .$this->getSeoName();
     }
 
     public function search($params = []) {

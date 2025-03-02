@@ -33,6 +33,8 @@ class ConfigPage  extends Base
     const TYPE_TEMPLATE = 15;
     const TYPE_SERVICE = 17;
 
+   
+
     const STATUS_INACTIVE = 3;
     const STATUS_ACTIVE = 1;
     /**
