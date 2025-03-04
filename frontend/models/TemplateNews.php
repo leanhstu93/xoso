@@ -5,6 +5,7 @@ namespace frontend\models;
 use Yii;
 use frontend\models\Base;
 use PSpell\Config;
+use common\components\MyHelpers;
 
 /**
  * This is the model class for table "banner".
@@ -59,11 +60,15 @@ class TemplateNews extends Base
         $content10SoXuatHienNhieuNhat = ConfigWebsite::getContent10SoXuatHienNhieuNhat($dataProvince['url_so_gan']);
         $contentThongKeGiaiDacBiet = ConfigWebsite::getContentThongKeGiaiDacBiet($dataProvince['url_so_gan']);
         $txt_thu = ConfigWebsite::getWeekday($date);
-        
+        $dateXoSoKyTruoc = ConfigWebsite::getTimeStampXoSoKyTruoc($provinceType, $date);
+
+        // Lay table so so ky truoc
+        $contentXoSoKyTruoc = MyHelpers::sendMessage("/site/get-content-xo-so-province?province=1");
 
         $vars = [
             '{{ten_dai}}' => $label,
             '{{ngay_xo}}' => date('d/m/Y', $date),
+            '{{ngay_xo_ky_truoc}}' => date('d/m/Y', $dateXoSoKyTruoc),
             '{{thu}}' => $txt_thu,
             '{{auto_2so_1}}' => rand(10, 99),
             '{{auto_2so_2}}' => rand(10, 99),

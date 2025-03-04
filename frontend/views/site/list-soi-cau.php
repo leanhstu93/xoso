@@ -10,7 +10,7 @@ use yii\widgets\LinkPager;
 <div class="content-left">
     <div class="box-content">
 
-        <div class="post-listing " id="loadMoreAjax">
+        <div class="post-listing ">
             <?php 
          
             $dataFirst = array_shift($data);
@@ -18,7 +18,7 @@ use yii\widgets\LinkPager;
             ?>
             <article class="item-list item_1">
                 <a href="<?php echo $dataFirst->getUrl()?>" title="<?php echo  $dataFirst->title ?>" class="full">
-                    <img src="<?= $dataFirst->image ?>"></a>
+                    <img src="/<?= $dataFirst->url_image ?>"></a>
                 <h2><a href="<?php echo $dataFirst->getUrl()?>" title="<?php echo  $dataFirst->title ?>" class="post-title-article font20">
                 <?php echo  $dataFirst->title ?></a> </h2>
                 <p class="post-sapo">
@@ -32,7 +32,7 @@ use yii\widgets\LinkPager;
                 <h3><a href="<?php echo $dataFirst->getUrl()?>" title="<?php echo  $dataFirst->title ?>" class="post-title-article">
                 <?php echo  $dataFirst->title ?></a> </h3>
             <a href="<?php echo $dataFirst->getUrl()?>" title="<?php echo  $dataFirst->title ?>" class="thumb-news">
-                    <img src="<?= $dataFirst->image ?>"></a>
+                    <img src="/<?= $dataFirst->url_image ?>"></a>
                
                 <p class="post-sapo">
                 <?php echo  $dataFirst->title ?></p>

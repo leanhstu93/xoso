@@ -79,8 +79,10 @@ class Router extends Base
          */
         if ($router = self::find()->where(['id_object' => $id_object,'type' => $type])->one() && $exc != 'delete') {
             $exc = 'update';
+        } else {
+            $exc = 'create';
         }
-
+        
         switch ($exc) {
             case 'create':
                 $self = new Router;

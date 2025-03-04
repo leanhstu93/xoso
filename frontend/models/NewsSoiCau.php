@@ -33,9 +33,9 @@ class NewsSoiCau extends Base
     {
         return [
             [['title'], 'required'],
-            [['content', 'url_image'], 'string'],
+            [['content','meta_desc', 'url_image', 'meta_keyword'], 'string'],
             [['status', 'id', 'province_type'], 'integer'],
-            [['title', 'seo_name'], 'string', 'max' => 255],
+            [['title', 'seo_name', 'meta_desc', 'meta_keyword'], 'string', 'max' => 255],
             [['date_created'], 'date', 'format' => 'php:Y-m-d'],
             [['province_type'], 'safe'],
         ];
@@ -79,7 +79,7 @@ class NewsSoiCau extends Base
     }
 
     public function search($params = []) {
-        $query = self::find()->joinWith(['bannerCategory']);
+        $query = self::find();
 
         $dataProvider = new ActiveDataProvider([
             'query'=>$query,
@@ -101,7 +101,7 @@ class NewsSoiCau extends Base
             'active'=>$this->active,
         ]);
 
-        $query->andFilterWhere(['like', 'name', $this->name]);
+        $query->andFilterWhere(['like', 'title', $this->title]);
 
         // filter by order amount
 

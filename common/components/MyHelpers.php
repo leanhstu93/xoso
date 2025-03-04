@@ -155,4 +155,26 @@ class MyHelpers
         // Đọc nội dung file
         return $content;
     }
+
+    public static function convertToSlug($str) {
+        // Chuyển đổi từ Unicode sang dạng không dấu
+        $str = mb_strtolower($str, 'UTF-8');
+        $str = preg_replace('/[àáạảãâầấậẩẫăằắặẳẵ]/u', 'a', $str);
+        $str = preg_replace('/[èéẹẻẽêềếệểễ]/u', 'e', $str);
+        $str = preg_replace('/[ìíịỉĩ]/u', 'i', $str);
+        $str = preg_replace('/[òóọỏõôồốộổỗơờớợởỡ]/u', 'o', $str);
+        $str = preg_replace('/[ùúụủũưừứựửữ]/u', 'u', $str);
+        $str = preg_replace('/[ỳýỵỷỹ]/u', 'y', $str);
+        $str = preg_replace('/[đ]/u', 'd', $str);
+    
+        // Loại bỏ ký tự đặc biệt
+        $str = preg_replace('/[^a-z0-9\s-]/', '', $str);
+        $str = preg_replace('/\s+/', '-', $str);
+        $str = preg_replace('/-+/', '-', $str);
+    
+        // Xóa dấu gạch ngang ở đầu và cuối (nếu có)
+        $str = trim($str, '-');
+    
+        return $str;
+    }    
 }

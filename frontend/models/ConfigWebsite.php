@@ -480,6 +480,23 @@ class ConfigWebsite extends Base
         }
     }
 
+    public static function getTimeStampXoSoKyTruoc($province, $timestamp)
+    {
+        for ($i = 1; $i <= 7; $i++) {
+            $previousDate = date('Y-m-d', strtotime("-$i days", $timestamp));
+            $listDataXoSoFollowThu = self::getUrlXoSoFollowThu($previousDate);
+
+            // Kiểm tra xem tỉnh có trong danh sách xổ số của ngày đó không
+            foreach ($listDataXoSoFollowThu as $data) {
+                if ($data['province_type'] == $province) {
+                    return strtotime($previousDate);
+                }
+            }
+        }
+
+        return null;
+    }   
+
     public static function getDataFollowProvince($type =0)
     {
         $list = [

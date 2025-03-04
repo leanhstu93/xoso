@@ -17,6 +17,16 @@ $menu =  [
         'icon' =>'icon wb-dashboard'
     ],
     [
+        'name' => 'Hình ảnh',
+        'link' => 'js__image',
+        'icon' =>'icon wb-image'
+    ],
+    [
+        'name' => 'SEO',
+        'link' => 'js__seo',
+        'icon' =>'icon fa-google-plus'
+    ],
+    [
         'name' => 'Trạng thái',
         'link' => 'js__status',
         'icon' =>'icon wb-heart'

@@ -24,9 +24,7 @@ class NewsSoiCauController extends Controller
     public function actionIndex()
     {
         $searchModel =  new NewsSoiCau();
-        $dataProvider = new ActiveDataProvider([
-            'query' => NewsSoiCau::find(),
-        ]);
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         Event::on('*', '*', function ($event) {
             // triggered for any event at any class
             Yii::debug('trigger event: ' . $event->name);
@@ -61,7 +59,10 @@ class NewsSoiCauController extends Controller
         $model = new NewsSoiCau();
 
         if ($model->load(Yii::$app->request->post())) {
+            $model->seo_name = Router::processSeoName($model->seo_name,$model->id);
             if ($model->save()) {
+                #xu ly node
+                Router::processRouter(['seo_name' => $model->seo_name, 'id_object' => $model->id, 'type' =>Router::TYPE_NEWS_SOI_CAU]);
                 Yii::$app->session->setFlash('success', "Lưu thành công");
                 return $this->redirect(['index']);
             } else {
@@ -86,7 +87,10 @@ class NewsSoiCauController extends Controller
         $model = $this->findModel($id);
        
         if ($model->load(Yii::$app->request->post())) {
+            $model->seo_name = Router::processSeoName($model->seo_name,$model->id);
             if ( $model->save()) {
+                #xu ly node
+                Router::processRouter(['seo_name' => $model->seo_name, 'id_object' => $model->id, 'type' =>Router::TYPE_NEWS_SOI_CAU],'update');
                 Yii::$app->session->setFlash('success', "Lưu thành công");
                 return $this->redirect(['index']);
             } else {

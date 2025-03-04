@@ -175,7 +175,6 @@ Base.fn = Base.prototype = {
 
 	    $(self.config.selectToggleGetAlias).on('change', function () {
 	        if ($(this).prop('checked')) {
-	        	console.log();
 	            self.JS_bodau_tv($(self.config.selectTitleValue), self.config.selectAliasValue, 0);
 	            $(self.config.selectAliasValue).attr('readonly', 'readonly');
 	        } else {

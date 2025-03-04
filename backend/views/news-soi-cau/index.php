@@ -31,6 +31,15 @@ $scrollingTop = 10;
                         'attribute' => 'title',
                     ],
                     [
+                        'attribute' => 'image',
+                        'format'=>'raw',
+                         'filter' => false,
+                        'value' => function ($data) {
+                            return Html::img( '/'.$data['url_image'],
+                                ['width' => '60px']);
+                        }
+                    ],
+                    [
                         'class'=>'kartik\grid\EnumColumn',
                         'attribute'=>'status',
                         'vAlign'=>'middle',

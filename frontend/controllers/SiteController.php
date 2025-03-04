@@ -32,6 +32,7 @@ use frontend\models\ContactForm;
 use frontend\models\Router;
 use frontend\models\ConfigPage;
 use frontend\models\RlProductCategory;
+use PSpell\Config;
 use yii\data\Pagination;
 use yii\helpers\Json;
 use yii\web\Response;
@@ -147,14 +148,11 @@ class SiteController extends BaseController
         } else if (preg_match('/xoso\-.*/i', $alias)) {
             // Xổ số theo tinh
             $type = 'xo-so-theo-tinh';
-        }else if (preg_match('/du-doan-soi-cau-xo-so\-.*/i', $alias)) {
-            // Xổ số theo tinh
-            $type = 'soi-cau';
         } else {
             $model = Router::find()->where(['seo_name' => $alias])->one();
             $type = $model->type;
         }
-    
+       
         if (!empty($type)) {
             switch ($type){
                
@@ -171,6 +169,10 @@ class SiteController extends BaseController
                
                 case Router::TYPE_NEWS_PAGE:
                     $res = $this->actionGetNewsCategory($model->id_object);
+                    break;
+                case Router::TYPE_NEWS_SOI_CAU:
+                    // chi tiet soi cau
+                    $res = $this->actionSoiCauDetail($model->id_object);
                     break;
               
                 case 'xo-so-follow-rule':
@@ -552,6 +554,43 @@ class SiteController extends BaseController
                 'bread' => $bread,
                 'newsHot' => $newsHot,
                 'pages' =>$pages
+            ]
+        ];
+    }
+
+    public function actionSoiCauDetail($id_object)
+    {
+        $model = NewsSoiCau::find()->where(['id'=>$id_object])->one();
+        # news lien quan
+        $dataRL = NewsSoiCau::find()->where(['status' => 1])
+            ->andWhere('id != :id',['id'=>$id_object])->limit(6)->all();
+        #end news lien quan
+        $bread[] = [
+            'name' => 'Trang chủ',
+            'link' => Yii::$app->homeUrl
+        ];
+        
+        $bread[] = [
+            'name' => $model->title,
+            'link' => $model->getUrl()
+        ];
+
+        # set meta
+        $this->view->registerMetaTag([
+            'name' => 'keywords',
+            'content' => $model->meta_keyword
+        ]);
+        $this->view->registerMetaTag([
+            'name' => 'description',
+            'content' => $model->meta_desc
+        ]);
+        $this->view->title = $model->title;
+        return [
+            'file' => 'news-soi-cau-detail',
+            'data' => [
+                'data' => $model,
+                'dataRL' => $dataRL,
+                'bread' => $bread,
             ]
         ];
     }
@@ -1104,12 +1143,37 @@ class SiteController extends BaseController
         debug($pass);
     }
 
+    private function getTimeSoiCau($type)
+    {
+        if ($type == ConfigWebsite::TYPE_MIEN_NAM) {
+            $checkTimeSoXo = date('H') > ConfigWebsite::NUMBER_HOURSE_XOSO_MIEN_NAM ||  (
+                date('H') == ConfigWebsite::NUMBER_HOURSE_XOSO_MIEN_NAM && date('i') >= ConfigWebsite::NUMBER_MINUTE_XOSO_FROM);
+        } else if ($type == ConfigWebsite::TYPE_MIEN_BAC) {
+            $checkTimeSoXo = date('H') > ConfigWebsite::NUMBER_HOURSE_XOSO_MIEN_BAC|| (
+                date('H') == ConfigWebsite::NUMBER_HOURSE_XOSO_MIEN_BAC && date('i') >= ConfigWebsite::NUMBER_MINUTE_XOSO_FROM
+            );
+        } else {
+            $checkTimeSoXo = date('H') > ConfigWebsite::NUMBER_HOURSE_XOSO_MIEN_TRUNG ||(
+                date('H') == ConfigWebsite::NUMBER_HOURSE_XOSO_MIEN_TRUNG && date('i') >= ConfigWebsite::NUMBER_MINUTE_XOSO_FROM 
+            );
+        }
+
+        if ($checkTimeSoXo) {
+            $dateTimeStamp = strtotime('+1 day');
+        } else {
+            $dateTimeStamp = time();
+        } 
+
+        return $dateTimeStamp;
+    }
+
     public function actionCreateNewsSoiCau()
     {
         $templateNews = TemplateNews::find()->one();
         $type = isset($_GET['type']) ? $_GET['type'] : ConfigWebsite::TYPE_MIEN_NAM;
-        $dateTimeStamp = strtotime('+1 day');
+        $dateTimeStamp = $this->getTimeSoiCau($type);
         $date =  date('Y-m-d', $dateTimeStamp);
+        
         if ($type == ConfigWebsite::TYPE_MIEN_NAM) {
             $dataProvince = ConfigWebsite::getUrlXoSoFollowThu($date);
         }
@@ -1118,18 +1182,35 @@ class SiteController extends BaseController
             foreach($dataProvince as $item) {
                 $news = NewsSoiCau::find()->where(['date_created' => $date, 'province_type' => $item['province_type']])->one();
            
-                if (empty( $news)) {
+                if (empty( $news) || !empty($_GET['preview'])) {
                     $myModel = new NewsSoiCau();
                     $myModel->title = "Dự đoán Soi cầu Xổ số " . $item['label'] ." " . date('d/m/Y', $dateTimeStamp);
                     $myModel->province_type = $item['province_type'];
                     $myModel->date_created = date('Y-m-d', $dateTimeStamp);
-                    $myModel->url_image = '';
+                    if ($type == ConfigWebsite::TYPE_MIEN_NAM) {
+                        $myModel->url_image = 'upload/images/du-doan-xo-so-mien-nam-3-3-2025.png';
+                    } else if ($type == ConfigWebsite::TYPE_MIEN_BAC) {
+                        $myModel->url_image = 'upload/images/du-doan-xo-so-mien-nam-3-3-2025.png';
+                    } else {
+                        $myModel->url_image = 'upload/images/du-doan-xo-so-mien-nam-3-3-2025.png';
+                    }
                     
                     $myModel->content = $templateNews->getContent($dateTimeStamp, $item['label'], $item['province_type']);
-                    debug($myModel->content);
-                    
+                    #xu ly node
+                    $seoName = MyHelpers::convertToSlug($myModel->title);
+                    $myModel->seo_name = Router::processSeoName( $seoName ,$myModel->id);
                     $myModel->status = 1;
+                   
+                 
+                    if (!empty($_GET['preview']) && $_GET['preview'] == 1) {
+                        return $this->render('news-soi-cau-detail', [
+                            'data' => $myModel,
+                            'preview' => 1,
+                        ]);
+
+                    }
                     if ($myModel->save()) {
+                        Router::processRouter(['seo_name' =>$myModel->seo_name, 'id_object' => $myModel->id, 'type' =>Router::TYPE_NEWS_SOI_CAU]);
                         echo "Lưu thành công:" . $myModel->title . "<br>";
                     } else {
                         debug($myModel->getErrorSummary(true), 1);
@@ -1216,11 +1297,25 @@ class SiteController extends BaseController
             ->orderBy('id DESC')
             ->all();
         # end phan trang
-
+        
         return $this->render('list-soi-cau', [
            'data' => $models,
                 'bread' => $bread,
                 'pages' =>$pages
+        ]);
+    }
+
+    /**
+     * Hien thi table xo so theo tinh thanh mien nam va mien trung
+     */
+    public function actionGetContentXoSoProvince()
+    {
+        $data = ConfigWebsite::getDataFollowProvince($_GET['province']);
+
+        return $this->render('get-content-table-xo-so-province', [
+            'province' =>  $_GET['province'],
+            'url' =>$data['url'],
+            'data' => $data
         ]);
     }
 }

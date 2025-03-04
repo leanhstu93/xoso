@@ -64,4 +64,8 @@ $listNumber = [];
             </tbody>
         </table>
 </div>
-<?php echo $this->render("//element/xoso/loto-province", array('data' => $listNumber)); ?>
+<?php 
+if (empty($hideLoTo)) {
+ echo $this->render("//element/xoso/loto-province", array('data' => $listNumber)); 
+ }
+ ?>
