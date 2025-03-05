@@ -32,6 +32,7 @@ class ConfigPage  extends Base
     const TYPE_VIDEO = 13;
     const TYPE_TEMPLATE = 15;
     const TYPE_SERVICE = 17;
+    const TYPE_NEWS_SOI_KEO = 19;
 
    
 

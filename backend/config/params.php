@@ -367,6 +367,13 @@ return [
             'link' => 'template/config',
             'type' => ConfigPage::TYPE_TEMPLATE
         ],
+        [
+            'name' => 'Soi cầu',
+            'id' => 'mn_soi_keo',
+            'module' => 'news-soi-cau',
+            'link' => 'javascrip:;',
+            'type' => ConfigPage::TYPE_NEWS_SOI_KEO
+         ],
     ],
 
     # setting language

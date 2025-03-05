@@ -63,12 +63,13 @@ class TemplateNews extends Base
         $dateXoSoKyTruoc = ConfigWebsite::getTimeStampXoSoKyTruoc($provinceType, $date);
 
         // Lay table so so ky truoc
-        $contentXoSoKyTruoc = MyHelpers::sendMessage(Yii::$app->request->hostInfo."/site/get-content-xo-so-province?province=" . $provinceType . "&date=" . $dateXoSoKyTruoc);
-
+        $contentXoSoKyTruoc = ConfigWebsite::getTableXoSo(Yii::$app->request->hostInfo."/site/get-content-xo-so-province?province=" . $provinceType . "&date=" . $dateXoSoKyTruoc);
+       
         $vars = [
             '{{ten_dai}}' => $label,
             '{{ngay_xo}}' => date('d/m/Y', $date),
             '{{ngay_xo_ky_truoc}}' => date('d/m/Y', $dateXoSoKyTruoc),
+            '{{table_xo_so_ky_truoc}}' => $contentXoSoKyTruoc,
             '{{thu}}' => $txt_thu,
             '{{auto_2so_1}}' => rand(10, 99),
             '{{auto_2so_2}}' => rand(10, 99),

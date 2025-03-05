@@ -999,6 +999,24 @@ class ConfigWebsite extends Base
        return $content;
     }
 
+    /**
+     * $param url https://atrungroi.com/thong-ke-xsag.html
+     */
+    public static function getTableXoSo($url)
+    {
+        $content = '';
+        $dataRaw = MyHelpers::sendMessage($url);
+
+        $preg = "/.*main.*box-ketqua.*<table(.*)<\/table>.*main.*/msi";
+        $dataAna = preg_match_all($preg, $dataRaw, $result);
+
+        if (!empty($result[1][0])) {
+            $content = "<table". $result[1][0]."</table>";    
+        }
+
+       return $content;
+    }
+
     
     /**
      * $param url https://atrungroi.com/thong-ke-xsag.html

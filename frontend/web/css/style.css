@@ -1490,6 +1490,9 @@ h1.title-post-singer {
     width: 100%;
     max-width: 100% !important;
 }
+.single_detal .table-bordered th,.single_detal  .table-bordered td {
+	padding: 5px;
+}
 img.wp-smiley, img.emoji {
     display: inline !important;
     border: none !important;

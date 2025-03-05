@@ -155,6 +155,13 @@ class BaseController extends Controller
                         'module' => $module,
                     ];
                     break;
+                case 'news-soi-cau':
+                    $res[] = [
+                        'name' => 'Soi cầu',
+                        'link' =>  Url::base(true) . '/soi-cau',
+                        'module' => $module,
+                    ];
+                    break;
                 case 'gallery-image':
                     $myGallery = new GalleryImage();
                     $config =  ConfigPage::find()->where(['type' => ConfigPage::TYPE_GALLERY_IMAGE])->one()->setTranslate();
@@ -183,6 +190,7 @@ class BaseController extends Controller
     public function buildMenu ()
     {
         $menu = Menu::find()->where(['id' => 1])->one();
+        
         $res = [];
         $data = json_decode($menu->data,true);
 
