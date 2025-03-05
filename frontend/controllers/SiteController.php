@@ -217,6 +217,7 @@ class SiteController extends BaseController
             $url = ConfigWebsite::URL_MIEN_BAC ;
             $label = 'Miền Bắc';
             $data = ConfigWebsite::getDataFollowProvince(ConfigWebsite::TYPE_PROVINCE_MIEN_BAC);
+           
         } elseif (preg_match('/xoso\-(.*)/i', $alias, $match )) {
             foreach($list as $key => $value) {
                 if ($value['alias'] == $match[1]) {
@@ -226,8 +227,6 @@ class SiteController extends BaseController
                     $url = $data['url'];
                 }
             }
-           // debug($url);
-         
         }
        
         if (empty($province)) {
@@ -1174,8 +1173,19 @@ class SiteController extends BaseController
         $dateTimeStamp = $this->getTimeSoiCau($type);
         $date =  date('Y-m-d', $dateTimeStamp);
         
-        if ($type == ConfigWebsite::TYPE_MIEN_NAM || $type == ConfigWebsite::TYPE_MIEN_TRUNG) {
+        if ($type == ConfigWebsite::TYPE_MIEN_NAM) {
             $dataProvince = ConfigWebsite::getUrlXoSoFollowThu($date);
+        } else if ($type == ConfigWebsite::TYPE_MIEN_BAC) {
+            $txtDate = date('d-m-Y', strtotime($date));
+            $dataProvince = [
+                [
+                    'label' => 'Miềm Bắc',
+                    'province_type' => ConfigWebsite::TYPE_PROVINCE_MIEN_BAC,                  
+                    'url' => ConfigWebsite::URL_MIEN_BAC .  '/' .  $txtDate . '.js'
+                ]
+            ];
+        } else {
+            $dataProvince = ConfigWebsite::getUrlXoSoFollowThuMienTrung($date);
         }
 
         if (!empty($dataProvince)) {
@@ -1195,7 +1205,7 @@ class SiteController extends BaseController
                         $myModel->url_image = 'upload/images/du-doan-xo-so-mien-nam-3-3-2025.png';
                     }
                     
-                    $myModel->content = $templateNews->getContent($dateTimeStamp, $item['label'], $item['province_type']);
+                    $myModel->content = $templateNews->getContent($dateTimeStamp, $item['label'], $item['province_type'],  $type);
                     #xu ly node
                     $seoName = MyHelpers::convertToSlug($myModel->title);
                     $myModel->seo_name = Router::processSeoName( $seoName ,$myModel->id);

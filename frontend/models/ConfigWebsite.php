@@ -480,11 +480,18 @@ class ConfigWebsite extends Base
         }
     }
 
-    public static function getTimeStampXoSoKyTruoc($province, $timestamp)
+    public static function getTimeStampXoSoKyTruoc($province, $timestamp, $typeMien)
     {
         for ($i = 1; $i <= 7; $i++) {
             $previousDate = date('Y-m-d', strtotime("-$i days", $timestamp));
-            $listDataXoSoFollowThu = self::getUrlXoSoFollowThu($previousDate);
+            if ($typeMien == self::TYPE_MIEN_TRUNG) {
+                $listDataXoSoFollowThu = self::getUrlXoSoFollowThuMienTrung($previousDate);
+            } else if ($typeMien == self::TYPE_MIEN_BAC) {
+                return strtotime($previousDate);
+            } else {
+                $listDataXoSoFollowThu = self::getUrlXoSoFollowThu($previousDate);
+            }
+            
 
             // Kiểm tra xem tỉnh có trong danh sách xổ số của ngày đó không
             foreach ($listDataXoSoFollowThu as $data) {
@@ -798,11 +805,11 @@ class ConfigWebsite extends Base
         return $list[$type];
     }
 
-    public static function analyticXoso($url)
+    public static function analyticXoso($url, $txtDate = '')
     {
-        $dataCache = static::readCacheXoSo($url);
+        $dataCache = static::readCacheXoSo($url, $txtDate);
 
-        if (!empty($dataCache)) {
+        if (!empty($dataCache) && 0) {
             return json_decode($dataCache, true);
         }
 
@@ -820,7 +827,7 @@ class ConfigWebsite extends Base
       
         $dataRaw = MyHelpers::sendMessage($url);
        
-      
+       // debug($dataRaw);
         //$dataRaw  = file_get_contents($url, false, $arrContextOptions);
         
         $giaidb = 'class=\"giaidb\">(.*)<\/td>.*<\/tr>';
@@ -873,26 +880,41 @@ class ConfigWebsite extends Base
         }
        
         if ($response['code'] == 200) {
-            static::saveCacheDataXoSo($url, json_encode($response));
+            static::saveCacheDataXoSo($url, json_encode($response), $txtDate );
         }
 
         return $response;
     }
 
-    private static function saveCacheDataXoSo($url, $content)
+    private static function saveCacheDataXoSo($url, $content, $txtDate = '')
     {
         $arrUrl = explode("/", $url);
         $fileName = array_pop($arrUrl);
-        $folder = array_pop($arrUrl);
+
+        if (strpos( $fileName, '.js') !== false) {
+            $folder =  $fileName;
+            $fileName = $txtDate . '.js';
+            
+        } else {
+            $folder = array_pop($arrUrl);
+        }
 
         return MyHelpers::saveToFile($folder, $fileName, $content);
     }
 
-    private static function readCacheXoSo($url) 
+    private static function readCacheXoSo($url, $txtDate = '') 
     {
         $arrUrl = explode("/", $url);
         $fileName = array_pop($arrUrl);
-        $folder = array_pop($arrUrl);
+
+        if (strpos( $fileName, '.js') !== false) {
+            $folder =  $fileName;
+            $fileName = $txtDate . '.js';
+            
+        } else {
+            $folder = array_pop($arrUrl);
+        }
+        
 
         return MyHelpers::readFileContent($folder, $fileName);
     }

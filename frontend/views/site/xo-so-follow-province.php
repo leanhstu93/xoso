@@ -62,8 +62,6 @@ exit;
                 
                 $date = date('Y-m-d',$timeLast);
                
-             //   $dataXoSo = ConfigWebsite::getUrlXoSoFollowThu($date);
-               
                 ?>
 
                     <div class="tieude_xs text-center">
@@ -90,13 +88,13 @@ exit;
 
                 <?php
                 $urlTmp = $url . '.js';
-
+                         
                 if ($i > 0) {
                     $urlTmp = $url . '/' . date("d-m-Y", $timeLast) . ".js ";
                 }   
         
-                $dataRaw = ConfigWebsite::analyticXoso($urlTmp);
-             
+                $dataRaw = ConfigWebsite::analyticXoso($urlTmp,  date("d-m-Y", $timeLast));
+                
                 if ($dataRaw['code'] == 200) {
                     if ($province != ConfigWebsite::TYPE_PROVINCE_MIEN_BAC){
                         
