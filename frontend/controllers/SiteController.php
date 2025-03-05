@@ -1106,7 +1106,7 @@ class SiteController extends BaseController
             )) {
                 continue;
             }
-
+//// daedea 
             $timestamp = strtotime("-".$i." day");
             $date = date('Y-m-d', $timestamp);
             $dataXoSo = ConfigWebsite::getUrlXoSoFollowThu($date);
