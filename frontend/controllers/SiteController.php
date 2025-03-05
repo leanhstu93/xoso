@@ -1174,7 +1174,7 @@ class SiteController extends BaseController
         $dateTimeStamp = $this->getTimeSoiCau($type);
         $date =  date('Y-m-d', $dateTimeStamp);
         
-        if ($type == ConfigWebsite::TYPE_MIEN_NAM) {
+        if ($type == ConfigWebsite::TYPE_MIEN_NAM || $type == ConfigWebsite::TYPE_MIEN_TRUNG) {
             $dataProvince = ConfigWebsite::getUrlXoSoFollowThu($date);
         }
 
