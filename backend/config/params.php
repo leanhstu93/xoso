@@ -332,13 +332,13 @@ return [
             'link' => 'ourhome',
             'type' => ConfigPage::TYPE_HOME,
         ],
-        [
-            'name' => 'Sản phẩm',
-            'id' => 'mn_product',
-            'module' => 'product',
-            'link' => '/product/config',
-            'type' => ConfigPage::TYPE_PRODUCT
-        ],
+        // [
+        //     'name' => 'Sản phẩm',
+        //     'id' => 'mn_product',
+        //     'module' => 'product',
+        //     'link' => '/product/config',
+        //     'type' => ConfigPage::TYPE_PRODUCT
+        // ],
         [
             'name' => 'Tin tức',
             'id' => 'mn_news',
@@ -346,27 +346,27 @@ return [
             'link' => 'news/config',
             'type' => ConfigPage::TYPE_NEWS
         ],
-        [
-            'name' => 'Liên hệ',
-            'id' => 'mn_contact',
-            'module' => 'contact',
-            'link' => 'javascrip:;',
-            'type' => ConfigPage::TYPE_CONTACT
-        ],
-        [
-            'name' => 'Thư viện hình ảnh',
-            'id' => 'mn_gallery-image',
-            'module' => 'gallery-image',
-            'link' => 'gallery-image/config',
-            'type' => ConfigPage::TYPE_GALLERY_IMAGE
-        ],
-        [
-            'name' => 'Kho giao diện',
-            'id' => 'mn_template',
-            'module' => 'template',
-            'link' => 'template/config',
-            'type' => ConfigPage::TYPE_TEMPLATE
-        ],
+        // [
+        //     'name' => 'Liên hệ',
+        //     'id' => 'mn_contact',
+        //     'module' => 'contact',
+        //     'link' => 'javascrip:;',
+        //     'type' => ConfigPage::TYPE_CONTACT
+        // ],
+        // [
+        //     'name' => 'Thư viện hình ảnh',
+        //     'id' => 'mn_gallery-image',
+        //     'module' => 'gallery-image',
+        //     'link' => 'gallery-image/config',
+        //     'type' => ConfigPage::TYPE_GALLERY_IMAGE
+        // ],
+        // [
+        //     'name' => 'Kho giao diện',
+        //     'id' => 'mn_template',
+        //     'module' => 'template',
+        //     'link' => 'template/config',
+        //     'type' => ConfigPage::TYPE_TEMPLATE
+        // ],
         [
             'name' => 'Soi cầu',
             'id' => 'mn_soi_keo',

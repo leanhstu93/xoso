@@ -24,6 +24,7 @@ class BaseController extends Controller
 
     private function doBuildMenu($data,&$res)
     {
+      
         foreach ($data as $value) {
             extract($value);
             /**
@@ -195,7 +196,7 @@ class BaseController extends Controller
         $data = json_decode($menu->data,true);
 
         $this->doBuildMenu($data,$res);
-
+        
         return $res;
     }
 

@@ -29,13 +29,13 @@ use yii\widgets\LinkPager;
             foreach ($data as $item) {
             ?>
             <article class="item-list item_2">
-                <h3><a href="<?php echo $dataFirst->getUrl()?>" title="<?php echo  $dataFirst->title ?>" class="post-title-article">
-                <?php echo  $dataFirst->title ?></a> </h3>
-            <a href="<?php echo $dataFirst->getUrl()?>" title="<?php echo  $dataFirst->title ?>" class="thumb-news">
-                    <img src="/<?= $dataFirst->url_image ?>"></a>
+                <h3><a href="<?php echo $item->getUrl()?>" title="<?php echo  $item->title ?>" class="post-title-article">
+                <?php echo  $item->title ?></a> </h3>
+            <a href="<?php echo $item->getUrl()?>" title="<?php echo  $item->title ?>" class="thumb-news">
+                    <img src="/<?= $item->url_image ?>"></a>
                
                 <p class="post-sapo">
-                <?php echo  $dataFirst->title ?></p>
+                <?php echo  $item->title ?></p>
             </article>   
             <?php } ?>                       
         </div>

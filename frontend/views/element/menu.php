@@ -3,7 +3,7 @@
         <div id='cssmenu' class="w100">
             <ul>
                 <?php
-                
+             //   debug($this->params['menu'] );
                 foreach ($this->params['menu'] as $item) {
                     $class_sub = !empty($item['sub_menu']) ? 'dropdown' : '';
 

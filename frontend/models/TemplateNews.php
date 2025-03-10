@@ -58,10 +58,11 @@ class TemplateNews extends Base
         $dataProvince = ConfigWebsite::getDataFollowProvince($provinceType);
         $contentLogan = ConfigWebsite::getContentLoGan($dataProvince['url_so_gan']);
         $content10SoXuatHienNhieuNhat = ConfigWebsite::getContent10SoXuatHienNhieuNhat($dataProvince['url_so_gan']);
+   
         $contentThongKeGiaiDacBiet = ConfigWebsite::getContentThongKeGiaiDacBiet($dataProvince['url_so_gan']);
         $txt_thu = ConfigWebsite::getWeekday($date);
         $dateXoSoKyTruoc = ConfigWebsite::getTimeStampXoSoKyTruoc($provinceType, $date, $typeMien);
-
+       
         // Lay table so so ky truoc
         $contentXoSoKyTruoc = ConfigWebsite::getTableXoSo(Yii::$app->request->hostInfo."/site/get-content-xo-so-province?province=" . $provinceType . "&date=" . $dateXoSoKyTruoc);
        

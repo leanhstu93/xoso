@@ -107,6 +107,7 @@ class MyHelpers
         $filepath = trim($filepath);
         // Kiểm tra và tạo thư mục nếu chưa tồn tại
         if (!is_dir($folder)) {
+          
             mkdir($folder, 0777, true); // Tạo thư mục và các thư mục cha nếu cần
             chmod($folder, 0777);
         }

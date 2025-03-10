@@ -267,10 +267,11 @@ class ConfigWebsite extends Base
                         'province_type' => self::TYPE_PROVINCE_QUANG_BINH,
                         'url' => self::URL_QUANG_BINH .  '/' .  $txtDate . '.js'
                     ], 
-                    [
-                        'label' => 'Quảng Trị',
-                        'url' => self::URL_QUANG_TRI .  '/' .  $txtDate . '.js'
-                    ],
+                    // [
+                    //     'label' => 'Quảng Trị',
+                    //     'province_type' => self::TYPE_PROVINCE_QUANG_TRI,
+                    //     'url' => self::URL_QUANG_TRI .  '/' .  $txtDate . '.js'
+                    // ],
                 ];
             case 5: // thu 6
                 return [
@@ -797,22 +798,25 @@ class ConfigWebsite extends Base
             ],
             
         ];
-
+        
         if ($type == 0) {
             return $list;
         }
-
+        // debug($list[$type]);
         return $list[$type];
     }
 
     public static function analyticXoso($url, $txtDate = '')
     {
+        $url = trim($url);
+        $txtDate = trim($txtDate);
         $dataCache = static::readCacheXoSo($url, $txtDate);
 
-        if (!empty($dataCache) && 0) {
+        if (!empty($dataCache)) {
+            
             return json_decode($dataCache, true);
         }
-
+        
         $response = [
             'code' => 200,
             'data' => []
@@ -891,7 +895,7 @@ class ConfigWebsite extends Base
         $arrUrl = explode("/", $url);
         $fileName = array_pop($arrUrl);
 
-        if (strpos( $fileName, '.js') !== false) {
+        if (strpos( $fileName, '.js') === false) {
             $folder =  $fileName;
             $fileName = $txtDate . '.js';
             
@@ -907,7 +911,7 @@ class ConfigWebsite extends Base
         $arrUrl = explode("/", $url);
         $fileName = array_pop($arrUrl);
 
-        if (strpos( $fileName, '.js') !== false) {
+        if (strpos( $fileName, '.js') === false) {
             $folder =  $fileName;
             $fileName = $txtDate . '.js';
             
@@ -1062,12 +1066,16 @@ class ConfigWebsite extends Base
     {
         $content = '';
         $dataRaw = MyHelpers::sendMessage($url);
+        $preg = '/<table.*?>(.*?)<\/table>/msi';
 
-        $preg = "/.*main.*Thống kê giải đặc biệt.*<table(.*)<\/table>.*30 kỳ quay.*main.*/msi";
         $dataAna = preg_match_all($preg, $dataRaw, $result);
-       
-        if (!empty($result[1][0])) {
-            $content = "<table". $result[1][0]."</table>";    
+        
+        if (!empty($result[1])) {
+            foreach($result[1] as $value) {
+                if (strpos($value, 'Đặc biệt') !== false) {
+                    $content = "<table class='table table-bordered text-center mb-0 small'>". $value."</table>";    
+                }
+            }
         }
        
        return $content;

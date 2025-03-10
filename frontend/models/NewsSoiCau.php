@@ -4,7 +4,6 @@ namespace frontend\models;
 
 use Yii;
 use frontend\models\Base;
-use frontend\models\BannerCategory;
 use yii\data\ActiveDataProvider;
 
 /**
@@ -37,7 +36,7 @@ class NewsSoiCau extends Base
             [['status', 'id', 'province_type'], 'integer'],
             [['title', 'seo_name', 'meta_desc', 'meta_keyword'], 'string', 'max' => 255],
             [['date_created'], 'date', 'format' => 'php:Y-m-d'],
-            [['province_type'], 'safe'],
+           
         ];
     }
 
@@ -58,19 +57,10 @@ class NewsSoiCau extends Base
         ];
     }
 
-//    public function relations()
-//    {
-//        // NOTE: you may need to adjust the relation name and the related
-//        // class name for the relations automatically generated below.
-//        return array(
-//            'banner_category' => array(self::BELONGS_TO,'Ba nnerCategory',array('category_id'=>'id')),
-//        );
-//    }
-
     public function getSeoName()
     {
         $model = Router::find()->where(['id_object' => $this->id,'type' => Router::TYPE_NEWS_SOI_CAU])->one();
-        return $model->seo_name;
+        return isset($model->seo_name) ? $model->seo_name : '';
     }
 
     public function getUrl()
@@ -98,7 +88,7 @@ class NewsSoiCau extends Base
 
         $query->andFilterWhere([
             'id'=>$this->id,
-            'active'=>$this->active,
+            'status'=>$this->status,
         ]);
 
         $query->andFilterWhere(['like', 'title', $this->title]);

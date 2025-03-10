@@ -8,6 +8,7 @@ use common\components\MyHelpers;
 
 // timestamp Ngay Xo sO gan nhat tu api
 $timeLast = ConfigWebsite::getDateXoSoLastFromUrl($url . ".js");
+
 if (empty($timeLast)) {
     Yii::$app->response->redirect([''])->send();
 exit;

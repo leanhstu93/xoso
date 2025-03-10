@@ -150,6 +150,9 @@ class SiteController extends BaseController
             $type = 'xo-so-theo-tinh';
         } else {
             $model = Router::find()->where(['seo_name' => $alias])->one();
+            if (!isset($model->type)) {
+                return $this->actionIndex();
+            }
             $type = $model->type;
         }
        
@@ -1187,7 +1190,7 @@ class SiteController extends BaseController
         } else {
             $dataProvince = ConfigWebsite::getUrlXoSoFollowThuMienTrung($date);
         }
-
+     
         if (!empty($dataProvince)) {
             foreach($dataProvince as $item) {
                 $news = NewsSoiCau::find()->where(['date_created' => $date, 'province_type' => $item['province_type']])->one();
@@ -1200,9 +1203,9 @@ class SiteController extends BaseController
                     if ($type == ConfigWebsite::TYPE_MIEN_NAM) {
                         $myModel->url_image = 'upload/images/du-doan-xo-so-mien-nam-3-3-2025.png';
                     } else if ($type == ConfigWebsite::TYPE_MIEN_BAC) {
-                        $myModel->url_image = 'upload/images/du-doan-xo-so-mien-nam-3-3-2025.png';
+                        $myModel->url_image = 'upload/images/du-doan-xo-so-mb.jpg';
                     } else {
-                        $myModel->url_image = 'upload/images/du-doan-xo-so-mien-nam-3-3-2025.png';
+                        $myModel->url_image = 'upload/images/du-doan-xo-so-mt.jpg';
                     }
                     
                     $myModel->content = $templateNews->getContent($dateTimeStamp, $item['label'], $item['province_type'],  $type);
@@ -1306,8 +1309,7 @@ class SiteController extends BaseController
             ->limit($pages->limit)
             ->orderBy('id DESC')
             ->all();
-        # end phan trang
-        
+
         return $this->render('list-soi-cau', [
            'data' => $models,
                 'bread' => $bread,
@@ -1321,10 +1323,12 @@ class SiteController extends BaseController
     public function actionGetContentXoSoProvince()
     {
         $data = ConfigWebsite::getDataFollowProvince($_GET['province']);
-
-        return $this->render('get-content-table-xo-so-province', [
+        $file = 'get-content-table-xo-so-province';
+       
+        return $this->render($file, [
             'province' =>  $_GET['province'],
             'url' =>$data['url'],
+            'timestamp' => $_GET['date'],
             'data' => $data
         ]);
     }
