@@ -139,7 +139,7 @@ Main.fn = Main.prototype = {
         let title = 'Kết quả xổ số Miền Nam - KQXS MN';
         let titleSub = 'XSMN';
         let passCheckType = this.checkTimeXoSoMienNam() && $( '.' + boxHtmlXoSo).length > 0;
-
+        
         if (type == 2) {
             // Mien trung
             titleSub = 'XSMT';
@@ -155,7 +155,7 @@ Main.fn = Main.prototype = {
             urlXoSo = 'https://live.xosodaiphat.com/lotteryLive/1/2025021009243111111111';
             passCheckType = this.checkTimeXoSoMienBac() && $( '.' + boxHtmlXoSo).length > 0 ;
         } 
-
+        //passCheckType = 1;
         if (passCheckType) {
             do {
                 let resp = await new Promise(async (resolve, reject) => {
@@ -230,7 +230,6 @@ Main.fn = Main.prototype = {
             }
 
             let funcTmp = (dataTmp) => {
-            
                 let htmlTmp = '';
                 let rowTmp = dataTmp.LotPrizes[i];
 
@@ -256,7 +255,18 @@ Main.fn = Main.prototype = {
             
             htmlNumber = funcTmp(item);
             htmlNumber2 = item2 ? funcTmp(item2) : null;
-            htmlNumber3 = funcTmp(item3);
+         //   htmlNumber3 = item3 ? funcTmp(item3) : null;
+
+            let htmlNumber3 ='';
+            if (resp.length == 3) {
+                let item3 = resp[2];
+                htmlNumber3 = funcTmp(item3);
+                htmlNumber3 = `
+                    <td class="number ${classCol}">   
+                     ${htmlNumber4}
+                    </td>
+                `;
+            }      
             
             let htmlNumber4 = '';
             if (resp.length == 4) {
@@ -281,10 +291,9 @@ Main.fn = Main.prototype = {
                     </td>
                     <td class="number ${classCol}">               
                         ${htmlNumber2}
-                    </td>
-                    <td class="number ${classCol}">               
-                        ${htmlNumber3}
-                    </td>
+                    </td>               
+                     ${htmlNumber3}
+                    
                     ${htmlNumber4}
                 </tr>
             `;
@@ -292,20 +301,39 @@ Main.fn = Main.prototype = {
             
         html = `<div class="box-ketqua"><table class="table table-bordered text-center"><tbody>${htmlHead} ${html}</tbody></table></div>`;
 
+        let hrefBread1 = '/';
         let dateXoSo = resp[0]['CrDateTime']; 
         let dateXoSoArr = dateXoSo.split(',');
+        let slug = '/xo-so-mien-nam-' + this.convertToSlug(dateXoSoArr[0]);
+
+        if (titleSub == 'XSMT') {
+            hrefBread1 = '/xo-so-mien-trung';
+            slug = '/xo-so-mien-trung-' + this.convertToSlug(dateXoSoArr[0]);
+        }
+        
         let htmlTitle = `<div class="tieude_xs text-center">
                             <h2 class="title-post">
                                 <a href="javascript:;" title="${title}">${title} </a></h2>
                             <h3 class="title-xsmb-item" id="ketquamnlivehead">
-                                <a href="javascript:;" title="${titleSub}">${titleSub}</a> » 
-                                <a href="javascript:;">${titleSub} ${dateXoSoArr[0]}</a> » 
-                                <a href="javascript:;">${titleSub} ${dateXoSoArr[1]}</a>
+                                <a href="${hrefBread1}" title="${titleSub}">${titleSub}</a> » 
+                                <a href="${slug}">${titleSub} ${dateXoSoArr[0]}</a> » 
+                                <a class='text-decoration-none' href="javascript:;">${titleSub} ${dateXoSoArr[1]}</a>
                             </h3>
                         </div>`;
         $('.js__box-html-xo-so-live').remove();
         $('.' + boxHtmlXoSo).prepend(`<div class="js__box-html-xo-so-live">${htmlTitle} ${html} </div>`);
    },
+
+   convertToSlug(title) {
+    return title
+        .normalize('NFD').replace(/[\u0300-\u036f]/g, '') // Loại bỏ dấu
+        .toLowerCase() // Chuyển thành chữ thường
+        .replace(/đ/g, 'd') // Chuyển đ -> d
+        .replace(/[^a-z0-9\s-]/g, '') // Loại bỏ ký tự đặc biệt
+        .trim() // Xóa khoảng trắng đầu và cuối
+        .replace(/\s+/g, '-') // Thay thế khoảng trắng bằng dấu -
+        .replace(/-+/g, '-'); // Loại bỏ dấu - thừa
+    },
 
    _renderTableXoSoMienBacLive(resp, boxHtmlXoSo, title, titleSub) {
         let html = '';
@@ -396,13 +424,15 @@ Main.fn = Main.prototype = {
 
         let dateXoSo = resp[0]['CrDateTime']; 
         let dateXoSoArr = dateXoSo.split(',');
+        let slug = '/xo-so-mien-bac-' + this.convertToSlug(dateXoSoArr[0]);
+
         let htmlTitle = `<div class="tieude_xs text-center">
                             <h2 class="title-post">
                                 <a href="javascript:;" title="${title}">${title} </a></h2>
                             <h3 class="title-xsmb-item" id="ketquamnlivehead">
                                 <a href="javascript:;" title="${titleSub}">${titleSub}</a> » 
-                                <a href="javascript:;">${titleSub} ${dateXoSoArr[0]}</a> » 
-                                <a href="javascript:;">${titleSub} ${dateXoSoArr[1]}</a>
+                                <a href="${slug}">${titleSub} ${dateXoSoArr[0]}</a> » 
+                                <a class='text-decoration-none' href="javascript:;">${titleSub} ${dateXoSoArr[1]}</a>
                             </h3>
                         </div>`;
         $('.js__box-html-xo-so-live').remove();

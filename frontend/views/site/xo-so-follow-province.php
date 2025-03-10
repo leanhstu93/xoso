@@ -69,19 +69,28 @@ exit;
                         <h2 class="title-post">
                             <a href="javascript:;" 
                             title="Kết quả xổ số <?php echo $data['label'] ?>">
-                            Kết quả xổ số <?php echo $data['label'] ?></a>
+                            Kết quả xổ số <?php echo $data['label'] ?>
+                            <?php if ($province == ConfigWebsite::TYPE_PROVINCE_MIEN_BAC) {
+                                echo "- KQXS MB";
+                            }
+                                ?>
+                                
+                        </a>
                         </h2>
                         <h3 class="title-xsmb-item" id="ketquamnlivehead">
                             <?php 
                             if ($province == ConfigWebsite::TYPE_PROVINCE_MIEN_BAC) {
                             ?>
-                            <a href="/xsmb-xo-so-mien-bac" title="XSMN">XSMB</a> 
-                            »                         
-                        <a href="javascript:;">XSMB <?php echo date("d/m/Y",$timeLast) ?></a>
+                                <a href="/xsmb-xo-so-mien-bac" title="XSMN">XSMB</a> 
+                                »                     
+                                <a href="/xo-so-mien-bac-<?php echo MyHelpers::getDayOfWeekInVietnamese($timeLast) != 'CN' ? MyHelpers::convertToSlug(MyHelpers::getDayOfWeekInVietnamese($timeLast)) : 'thu-chu-nhat' ?>">XSMB <?php echo MyHelpers::getDayOfWeekInVietnamese($timeLast)  ?></a> »
+
+                                <a href="javascript:;" class="text-decoration-none">XSMB <?php echo date("d/m/Y",$timeLast) ?></a>
                         <?php } else { ?>
                                 <a href="/" title="XSMN">XSMN</a> 
-                                »                         
-                        <a href="javascript:;">XSMN <?php echo date("d/m/Y",$timeLast) ?></a>
+                                »              
+                                <a href="/xo-so-mien-nam-<?php echo MyHelpers::getDayOfWeekInVietnamese($timeLast) != 'CN' ? MyHelpers::convertToSlug(MyHelpers::getDayOfWeekInVietnamese($timeLast)) : 'thu-chu-nhat' ?>">XSMN <?php echo MyHelpers::getDayOfWeekInVietnamese($timeLast)  ?></a> »           
+                        <a href="javascript:;" class="text-decoration-none">XSMN <?php echo date("d/m/Y",$timeLast) ?></a>
                                 <?php } ?>
                            
                         </h3>

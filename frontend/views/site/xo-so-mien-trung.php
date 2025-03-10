@@ -55,9 +55,9 @@ use common\components\MyHelpers;
                     <a href="javascript:;" 
                     title="Kết quả xổ số Miền Trung - KQXS MT">Kết quả xổ số Miền Trung - KQXS MT</a></h2>
                 <h3 class="title-xsmb-item" id="ketquamnlivehead">
-                    <a href="javascript:;" title="XSMT">XSMT</a> » 
-                    <a href="javascript:;">XSMT <?php echo MyHelpers::getDayOfWeekInVietnamese($timestamp) ?></a> » 
-                    <a href="javascript:;">XSMT <?php echo date("d/m/Y", $timestamp) ?></a>
+                    <a href="/xo-so-mien-trung" title="XSMT">XSMT</a> » 
+                    <a href="/xo-so-mien-trung-<?php echo MyHelpers::getDayOfWeekInVietnamese($timestamp) != 'CN' ? MyHelpers::convertToSlug(MyHelpers::getDayOfWeekInVietnamese($timestamp)) : 'thu-chu-nhat' ?>">XSMT <?php echo MyHelpers::getDayOfWeekInVietnamese($timestamp)  ?></a> »           
+                    <a href="javascript:;" class="text-decoration-none">XSMT <?php echo date("d/m/Y",$timestamp) ?></a>
                 </h3>
 	        </div>
 
